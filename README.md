@@ -26,18 +26,18 @@ BlogResearch AI is a **hierarchical multi-agent system** that automates end-to-e
 
 ```mermaid
 flowchart TD
-    A[BlogResearch AI<br/>Hierarchical Multi-Agent System] --> B[DataHunter Agent<br/>Master]
-    A --> C[GapAnalyzer Agent<br/>Parallel]
-    A --> D[ContentGuard Agent<br/>Long-Running + Loop]
+    A[BlogResearch AI] --> B[DataHunter Agent]
+    A --> C[GapAnalyzer Agent]
+    A --> D[ContentGuard Agent]
     
-    B --> E[ValidatorTool<br/>MCP]
-    C --> F[SERPParser<br/>Custom]
-    D --> G[DateChecker Tool]
-    D --> H[LinkValidator Tool]
-    D --> I[StatRefresher Tool]
-    D --> J[PriorityRanker Tool]
+    B --> E[ValidatorTool]
+    C --> F[SERPParser]
+    D --> G[DateChecker]
+    D --> H[LinkValidator]
+    D --> I[StatRefresher]
+    D --> J[PriorityRanker]
     
-    E --> K[Memory Bank<br/>Long-term Store]
+    E --> K[Memory Bank]
     F --> K
     G --> K
     H --> K
