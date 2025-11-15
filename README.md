@@ -24,33 +24,31 @@ BlogResearch AI is a **hierarchical multi-agent system** that automates end-to-e
 
 ### **Agent Architecture**
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                     BlogResearch AI                         │
-│              (Hierarchical Multi-Agent System)              │
-└─────────────────────────────────────────────────────────────┘
-                               │
-        ┌──────────────────────┼──────────────────────┐
-        ▼                      ▼                      ▼
-┌─────────────┐        ┌──────────────┐      ┌──────────────┐
-│ DataHunter  │        │ GapAnalyzer  │      │ ContentGuard │
-│   Agent     │        │    Agent     │      │    Agent     │
-│   (Master)  │        │  (Parallel)  │      │ (Long-Running│
-└─────────────┘        └──────────────┘      │   + Loop)    │
-       │                     │                └──────────────┘
-       ▼                     ▼                       │
-┌─────────────────┐   ┌──────────────┐              │
-│  ValidatorTool  │   │ SERPParser   │              │
-│    (MCP)        │   │   (Custom)   │              │
-└─────────────────┘   └──────────────┘              │
-       │                      │                      │
-       └──────────────────────┴──────────────────────┘
-                              │
-                              ▼
-                    ┌──────────────────┐
-                    │   Memory Bank    │
-                    │ (Long-term Store)│
-                    └──────────────────┘
+```mermaid
+flowchart TD
+    A[BlogResearch AI<br/>Hierarchical Multi-Agent System] --> B[DataHunter Agent<br/>Master]
+    A --> C[GapAnalyzer Agent<br/>Parallel]
+    A --> D[ContentGuard Agent<br/>Long-Running + Loop]
+    
+    B --> E[ValidatorTool<br/>MCP]
+    C --> F[SERPParser<br/>Custom]
+    D --> G[DateChecker Tool]
+    D --> H[LinkValidator Tool]
+    D --> I[StatRefresher Tool]
+    D --> J[PriorityRanker Tool]
+    
+    E --> K[Memory Bank<br/>Long-term Store]
+    F --> K
+    G --> K
+    H --> K
+    I --> K
+    J --> K
+    
+    style A fill:#e1f5ff,stroke:#01579b,stroke-width:3px
+    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style C fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style D fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
+    style K fill:#fce4ec,stroke:#880e4f,stroke-width:2px
 ```
 
 ### **Agent Specifications**
