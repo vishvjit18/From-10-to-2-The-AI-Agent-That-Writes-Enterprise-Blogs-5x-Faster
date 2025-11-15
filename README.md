@@ -1,5 +1,4 @@
 # From-10-to-2-The-AI-Agent-That-Writes-Enterprise-Blogs-5x-Faster
-# BlogResearch AI: Automated Research & Data Validation Agent
 
 **Track:** Enterprise Agents  
 **Problem Solved:** The 10-Hour Research Bottleneck in Enterprise Blog Creation  
