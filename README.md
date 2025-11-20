@@ -77,25 +77,22 @@ flowchart TD
 - **Type:** Runs alongside DataHunter for concurrent execution
 - **Function:** Analyzes SERP top-10 results to identify content gaps
 - **Key Tools:**
-  - **SERPParser**: Scrapes and structures competitor content
-  - **KeywordClustering Tool**: Uses TF-IDF to identify missing subtopics
-  - **JourneyMapperTool**: Classifies content by buyer stage (awareness, consideration, decision)
-  - **DepthScorer**: Compares word count, media, examples vs. competitors
+  - **Query Interpreter Agent**: Expands incoming keywords into optimized SERP search strings plus rationale (`QueryInterpretationOutput`).
+  - **Google Search Tool (`google.adk.tools.google_search`)**: Executes live searches for each query variant with anti-bot handling handled by the ADK runtime.
+  - **SERP Structuring Agent**: Normalizes raw search JSON into typed records with inferred `focus_area`, aggregate `themes`, and `patterns`.
+  - **Gap Synthesis Agent**: Identifies SERP themes, buyer-stage coverage gaps, and differentiation opportunities ready for DataHunter ingestion.
 - **Session Management:** Shares session state with DataHunter for unified results
 
+**Current Implementation (v1):**
+- **Sequential workflow (`gap_analyzer_agent/root_agent`)**: Orchestrates three LLM sub-agents to interpret the query, gather SERP data, then synthesize gaps.
+- **Query Interpreter (`gap_analyzer_agent/query_interpreter_agent.py`)**: Gemini 2.5 Flash Lite model that expands the user keyword into 1–2 optimized search strings and explains its rationale via the `QueryInterpretationOutput` schema (`original_query`, `search_strings`, `rationale`).
+- **SERP Collector (`gap_analyzer_agent/serp_collector_agent.py`)**: Two-step SequentialAgent. The first step is a constrained tool user that repeatedly calls the `google_search` tool for each interpreted search string and returns raw JSON. The second step structures those rows into typed `SERPCollectionOutput` fields (`total_results`, structured `results` with inferred `focus_area`, aggregated `themes`, and narrative `patterns` that flag sparse coverage).
+- **Gap Synthesis Agent (`gap_analyzer_agent/agent.py`)**: Consumes `{query_interpretation}` and `{serp_results}` to produce three analyst-ready sections (SERP Themes, Identified Gaps, Opportunities) plus explicit follow-up suggestions if the SERP set is thin.
+- **Model parity**: All three sub-agents currently run on Gemini 2.5 Flash Lite for fast iteration while keeping identical JSON signatures, so DataHunter can ingest outputs without additional adapters.
+
 **Example Output:**
-```json
-{
-  "missing_subtopics": ["content governance", "multi-brand management"],
-  "journey_gaps": ["decision-stage content absent"],
-  "depth_gaps": {
-    "competitor_avg_videos": 3,
-    "your_videos": 0,
-    "recommendation": "Add 2-3 demo videos"
-  },
-  "information_gain_opportunities": ["proprietary survey data"]
-}
-```
+
+
 
 #### **3. ContentGuard Agent (Long-Running + Loop)**
 - **Type:** Loop agent with pause/resume capability
