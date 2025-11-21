@@ -89,7 +89,7 @@ async def save_agent_output_to_file(
         # Generate filename
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         prefix = filename_prefix or output_key or agent_name
-        filename = f"{prefix}_{invocation_id}_{timestamp}.json"
+        filename = f"{prefix}_{timestamp}.json"
         filepath = output_dir / filename
         
         # Convert Pydantic model to dict if needed
