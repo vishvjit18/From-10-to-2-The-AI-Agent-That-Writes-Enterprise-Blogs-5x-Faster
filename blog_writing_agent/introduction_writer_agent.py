@@ -3,52 +3,48 @@ Introduction Writer sub-agent for Blog Writing system.
 
 This agent handles Step 2: writing the introduction section and establishing
 the article framework based on the article plan.
+
+Uses dynamic instruction generation to receive only filtered, relevant parts
+of the article plan, improving token efficiency and focus.
 """
 
 import json
-from pathlib import Path
 from google.adk.agents import LlmAgent
+from google.adk.agents.readonly_context import ReadonlyContext
 from utils.storage import create_markdown_storage_callback
+from .plan_filters import _load_article_plan, filter_for_introduction
 
 
-def _load_article_plan() -> str:
-    """Load the article plan from the JSON file."""
-    data_dir = Path("data/collections")
-    article_plan_path = data_dir / "article_plan.json"
+async def _instruction_provider(context: ReadonlyContext) -> str:
+    """
+    Dynamically generate instruction with filtered article plan context.
     
-    if not article_plan_path.exists():
-        return "[Article plan file not found. Please run the Article Planner Agent first.]"
+    This function is called at runtime to build the instruction with only
+    the relevant parts of the article plan for the Introduction Writer.
+    """
+    # Load and filter article plan
+    article_plan = _load_article_plan()
     
-    try:
-        with open(article_plan_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-            # Extract the actual plan from the output field
-            plan_data = data.get("output", data)
-            # Convert back to JSON string for embedding in instruction
-            return json.dumps(plan_data, indent=2, ensure_ascii=False)
-    except Exception as e:
-        return f"[Error loading article plan: {e}]"
-
-
-# Load article plan at module level
-_article_plan_content = _load_article_plan()
-
-
-introduction_writer_agent = LlmAgent(
-    name="introduction_writer",
-    model="gemini-2.5-flash-lite",
-    description=(
-        "Creates compelling introduction sections and establishes article framework "
-        "based on the article plan. Sets the stage for the entire article with engaging "
-        "hooks, context, and clear structure."
-    ),
-    instruction=(
+    if not article_plan:
+        # Handle missing article plan gracefully
+        return (
+            "You are the Introduction Writer Agent. However, the article plan file "
+            "was not found. Please ensure the Article Planner Agent has been run first."
+        )
+    
+    filtered_context = filter_for_introduction(article_plan)
+    
+    # Convert filtered context to JSON string for embedding in instruction
+    filtered_json = json.dumps(filtered_context, indent=2, ensure_ascii=False)
+    
+    # Build dynamic instruction with filtered context
+    instruction = (
         "You are the Introduction Writer Agent. Your task is to create a compelling "
         "introduction section and establish the article framework based on the provided article plan.\n\n"
         
-        "## Input: Article Plan\n\n"
-        "You have access to the article plan created by the Article Planner Agent:\n"
-        f"{_article_plan_content}\n\n"
+        "## Input: Filtered Article Plan Context\n\n"
+        "You have access to the following relevant parts of the article plan:\n"
+        f"{filtered_json}\n\n"
         
         "## Your Task\n\n"
         "Create an introduction section that:\n"
@@ -76,13 +72,16 @@ introduction_writer_agent = LlmAgent(
         "- Creates anticipation for the insights to come\n\n"
         
         "### Writing Guidelines\n"
-        "- **Tone**: Match the professional tone specified in the article plan\n"
-        "- **Accessibility**: Balance technical depth with accessibility as specified\n"
-        "- **Length**: Aim for the estimated word count in the introduction section plan\n"
+        "- **Tone and Style**: Follow the professional tone and technical accessibility balance specified in the article plan context above\n"
+        "- **Length**: Aim for the estimated word count specified in the introduction section plan\n"
         "- **Engagement**: Use active voice, clear transitions, and compelling language\n"
-        "- **Evidence**: Incorporate any evidence needs identified for the introduction (anecdotes, trends, etc.)\n"
-        "- **Examples**: Include practical examples if specified in the plan\n"
-        "- **Distinctions**: Make any conceptual distinctions identified in the plan\n\n"
+        "- **Evidence**: Incorporate the evidence needs identified in the introduction section plan\n"
+        "- **Examples**: Include the practical examples specified in the introduction section plan\n"
+        "- **Distinctions**: Make the conceptual distinctions identified in the introduction section plan\n\n"
+        
+        "## Target Audience and Context\n\n"
+        "Ensure your introduction aligns with the 'overview' section in the article plan context above, "
+        "particularly the target audience, key message, purpose, and differentiation strategy.\n\n"
         
         "## Output Format\n\n"
         "Produce your introduction as well-formatted markdown that includes:\n"
@@ -99,10 +98,23 @@ introduction_writer_agent = LlmAgent(
         "4. **Completeness**: The introduction should feel complete while setting up the rest of the article\n"
         "5. **Engagement**: Prioritize reader engagement and value from the first sentence\n\n"
         
-        "Review the article plan carefully and create a compelling introduction that establishes "
+        "Review the filtered article plan context carefully and create a compelling introduction that establishes "
         "the framework for the entire article. Make it engaging, informative, and aligned with "
         "the plan's objectives."
+    )
+    
+    return instruction
+
+
+introduction_writer_agent = LlmAgent(
+    name="introduction_writer",
+    model="gemini-2.5-flash-lite",
+    description=(
+        "Creates compelling introduction sections and establishes article framework "
+        "based on filtered article plan context. Sets the stage for the entire article with engaging "
+        "hooks, context, and clear structure."
     ),
+    instruction=_instruction_provider,  # Dynamic instruction provider
     output_key="introduction_section",
     after_agent_callback=create_markdown_storage_callback("introduction_section"),
 )
