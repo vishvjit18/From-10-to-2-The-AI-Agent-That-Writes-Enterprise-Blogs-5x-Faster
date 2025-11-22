@@ -4,7 +4,7 @@ Article Planner sub-agent for Blog Writing system.
 This agent handles Step 1: analyzing research and gap analysis files to create
 a comprehensive, structured article plan with sections, key points, and content requirements.
 """
-
+import json
 from google.adk.agents import LlmAgent
 from google.adk.agents.readonly_context import ReadonlyContext
 from utils.storage import create_storage_callback
@@ -13,34 +13,41 @@ from . import ArticlePlan
 
 def _load_analysis_files() -> tuple[str, str]:
     """Load the analysis files from data/collections directory."""
+    def _load_file(file_path: Path, error_message: str) -> str:
+        """Helper function to load and parse a JSON file."""
+        if not file_path.exists():
+            return error_message
+        try:
+            with open(file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                plan_data = data.get("output", data)
+                return json.dumps(plan_data, indent=2, ensure_ascii=False)
+        except Exception as e:
+            return f"[Error loading {file_path.name}: {e}]"
+    
     data_dir = Path("data/collections")
-    data_analysis_path = data_dir / "data_analysis.md"
-    gap_analysis_path = data_dir / "gap_analysis.md"
-    
-    data_analysis = ""
-    gap_analysis = ""
-    
-    if data_analysis_path.exists():
-        data_analysis = data_analysis_path.read_text(encoding="utf-8")
-    
-    if gap_analysis_path.exists():
-        gap_analysis = gap_analysis_path.read_text(encoding="utf-8")
+    data_analysis = _load_file(
+        data_dir / "data_analysis.md",
+        "[Data analysis file not found. Please run the Data Hunter Agent first.]"
+    )
+    gap_analysis = _load_file(
+        data_dir / "gap_analysis.md",
+        "[Gap analysis file not found. Please run the Gap Analysis Agent first.]"
+    )
     
     return data_analysis, gap_analysis
 
 
-async def _instruction_provider(context: ReadonlyContext) -> str:
-    """Instruction provider that loads analysis files and injects them into the instruction."""
-    # Load analysis files
-    data_analysis, gap_analysis = _load_analysis_files()
-    
-    # Handle missing files gracefully
-    if not data_analysis:
-        data_analysis = "[Data analysis file not found or empty]"
-    if not gap_analysis:
-        gap_analysis = "[Gap analysis file not found or empty]"
-    
-    # Build instruction with injected file contents
+
+data_analysis, gap_analysis = _load_analysis_files()
+
+root_agent = LlmAgent(
+    name="article_planner",
+    model="gemini-2.5-flash-lite",
+    description=(
+        "Analyzes research and gap analysis files to create a comprehensive, structured "
+        "article plan with sections, key points, evidence needs, and content requirements."
+    ),
     instruction = (
         "You are the Article Planner Agent. Your task is to analyze the provided analysis "
         "files and create a detailed, structured plan for a comprehensive blog article.\n\n"
@@ -118,19 +125,7 @@ async def _instruction_provider(context: ReadonlyContext) -> str:
         "- Make the plan comprehensive and detailed\n\n"
         
         "Begin analyzing the files and creating the comprehensive article plan now."
-    )
-    
-    return instruction
-
-
-root_agent = LlmAgent(
-    name="article_planner",
-    model="gemini-2.5-flash-lite",
-    description=(
-        "Analyzes research and gap analysis files to create a comprehensive, structured "
-        "article plan with sections, key points, evidence needs, and content requirements."
     ),
-    instruction=_instruction_provider,
     output_schema=ArticlePlan,
     output_key="article_plan",
     after_agent_callback=create_storage_callback("article_plan"),
