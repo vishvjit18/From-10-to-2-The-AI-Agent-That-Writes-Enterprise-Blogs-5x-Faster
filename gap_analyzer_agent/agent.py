@@ -11,10 +11,29 @@ The agent uses a multi-agent architecture with specialized sub-agents:
 """
 
 from google.adk.agents import LlmAgent, SequentialAgent
-
+from utils.storage import create_markdown_storage_callback
 from .query_interpreter_agent import query_interpreter_agent
-from .serp_collector_agent import serp_collector_agent
+from google.adk.tools import google_search
 
+serp_tool_agent = LlmAgent(
+    name="serp_tool_user",
+    model="gemini-2.5-flash-lite",
+    description=(
+        "Executes Google searches and returns the raw results for structuring."
+    ),
+    instruction=(
+       "You are a tool-using agent. Your purpose is to execute the research tasks "
+        "and collect raw search results.\n\n"
+        "Process:\n"
+        "1. Read the research_plan {query_interpretation}.\n"
+        "2. For each task, call the google_search tool with the exact search_query string.\n"
+        "3. Collect all raw search results in a structured format.\n"
+        "4. Return the complete set of raw results for structuring.\n\n"
+        "Execute each search independently but collect all results together. "
+    ),
+    tools=[google_search],
+    output_key="raw_serp_data",
+)
 
 # Synthesis agent that processes SERP results into gap analysis
 synthesis_agent = LlmAgent(
@@ -28,8 +47,7 @@ synthesis_agent = LlmAgent(
         "You are the Gap Synthesis Agent. Your task is to analyze the collected "
         "SERP results and synthesize them into actionable insights.\n\n"
         "You have access to:\n"
-        "- Query interpretation results: {query_interpretation}\n"
-        "- SERP collection results: {serp_results}\n\n"
+        "- SERP collection results: {raw_serp_data}\n\n"
         "Process:\n"
         "1. Review the SERP data collected by the sub-agents.\n"
         "2. Synthesize findings into three sections:\n"
@@ -45,6 +63,8 @@ synthesis_agent = LlmAgent(
         "Keep the tone analytical and reference source URLs when making "
         "specific claims. Base all insights on the actual SERP data provided."
     ),
+    output_key="gap_analysis",
+    after_agent_callback=create_markdown_storage_callback("gap_analysis"),  # Save output to local storage
 )
 
 
@@ -58,7 +78,7 @@ root_agent = SequentialAgent(
     ),
     sub_agents=[
         query_interpreter_agent,  # Step 1: Interpret query, expand to search strings
-        serp_collector_agent,     # Step 2: Execute searches, collect SERP data
+        serp_tool_agent,     # Step 2: Execute searches, collect SERP data
         synthesis_agent,          # Steps 3-4: Synthesize findings and identify gaps
     ],
 )

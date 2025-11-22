@@ -1,0 +1,28 @@
+{
+  "timestamp": "20251122_101515",
+  "invocation_id": "e-e32a6810-7694-4554-9c61-a18a0ed53102",
+  "agent_name": "query_planner",
+  "output_key": "research_plan",
+  "output": {
+    "tasks": [
+      {
+        "search_query": "AI agents creative writing filetype:pdf site:.edu",
+        "source_pref": "academic",
+        "freshness_window": "≤18 months",
+        "reasoning": "To understand the current academic research and theoretical frameworks surrounding AI's role in creative writing, focusing on recent developments."
+      },
+      {
+        "search_query": "AI tools for writers creative process filetype:pdf site:.org",
+        "source_pref": "industry",
+        "freshness_window": "2024-2025",
+        "reasoning": "To identify practical AI tools and applications currently being developed or used by writers, and to understand their impact on the creative workflow, prioritizing the most recent industry offerings."
+      },
+      {
+        "search_query": "ethical considerations AI creative writing filetype:pdf site:.edu",
+        "source_pref": "academic",
+        "freshness_window": "≤18 months",
+        "reasoning": "To explore the ethical implications and challenges associated with using AI in creative writing, such as authorship, originality, and bias, from an academic perspective."
+      }
+    ]
+  }
+}

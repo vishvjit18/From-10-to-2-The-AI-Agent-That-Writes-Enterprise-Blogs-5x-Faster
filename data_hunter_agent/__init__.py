@@ -38,20 +38,8 @@ class ResearchFinding(BaseModel):
     snippet: str = Field(
         description="Snippet or description text from the source."
     )
-    url: str = Field(description="URL of the source.")
-    source_type: str = Field(
-        description="Inferred source type (e.g., 'academic', 'industry', 'news', 'blog')."
-    )
     credibility_guess: str = Field(
         description="Initial credibility assessment (high/medium/low) based on domain and context."
-    )
-    tags: List[str] = Field(
-        description="Relevant tags for categorization and filtering.",
-        default_factory=list
-    )
-    task_id: Optional[int] = Field(
-        description="Index of the research task that produced this finding.",
-        default=None
     )
 
 
@@ -60,14 +48,6 @@ class ResearchBatch(BaseModel):
 
     findings: List[ResearchFinding] = Field(
         description="All collected research findings across all tasks."
-    )
-    total_findings: int = Field(
-        description="Total number of findings collected.",
-        default=0
-    )
-    tasks_executed: int = Field(
-        description="Number of research tasks that were executed.",
-        default=0
     )
 
 

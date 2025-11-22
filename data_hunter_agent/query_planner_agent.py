@@ -8,7 +8,7 @@ specific research tasks with search parameters.
 from google.adk.agents import LlmAgent
 
 from . import ResearchPlan
-from utils.storage import save_agent_output_to_file
+from utils.storage import create_storage_callback
 
 
 query_planner_agent = LlmAgent(
@@ -24,8 +24,7 @@ query_planner_agent = LlmAgent(
         "gather the needed data.\n\n"
         "Process:\n"
         "1. Understand the core intent and scope of the user's research brief.\n"
-        "2. The First query should use the format '[topic] filetype:pdf related:.edu'."
-        "3. The second query should use the format '[topic] filetype:pdf site:.org'."
+        "3. The query should use the format '[topic] filetype:pdf site:.org'."
         # "2. Write query for each of these three type of sources: academic, industry, news.\n"
         "3. Create 3 research tasks, each with:\n"
         "   - search_query: A precise, effective search string\n"
@@ -39,5 +38,5 @@ query_planner_agent = LlmAgent(
     ),
     output_schema=ResearchPlan,
     output_key="research_plan",
-    after_agent_callback=save_agent_output_to_file,  # Save output to local storage
+    after_agent_callback=create_storage_callback("research_plan"),  # Save output to local storage
 )

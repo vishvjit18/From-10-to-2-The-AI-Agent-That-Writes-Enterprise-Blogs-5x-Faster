@@ -8,6 +8,7 @@ precise search strings for SERP analysis.
 from pydantic import BaseModel, Field
 
 from google.adk.agents import LlmAgent
+from utils.storage import create_storage_callback
 
 
 class QueryInterpretationOutput(BaseModel):
@@ -41,20 +42,19 @@ query_interpreter_agent = LlmAgent(
     ),
     instruction=(
         "You are the Query Interpreter Agent. Your task is to analyze the "
-        "user's keyword or topic query and expand it into precise search strings "
+        "user's keyword or topic query and expand it into precise 3 search strings "
         "for competitive landscape analysis.\n\n"
         "Process:\n"
         "1. Understand the core intent and context of the user's query.\n"
         "2. Identify if the query needs expansion or refinement for effective "
         "SERP research.\n"
-        "3. Generate 1-2 precise search strings that will capture the most "
-        "relevant competitive content.\n"
+        "3.The query should use the format '[topic] filetype:pdf related:.edu'.\n"
         "4. Provide a brief rationale explaining your search string choices.\n\n"
         "Keep search strings concise but comprehensive enough to capture "
-        "competitive content. If the original query is already optimal, you may "
-        "return it as the single search string."
+        "competitive content."
     ),
     output_schema=QueryInterpretationOutput,
     output_key="query_interpretation",
+    after_agent_callback=create_storage_callback("query_interpretation"),
 )
 

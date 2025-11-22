@@ -12,3 +12,5 @@ Datasets/feeds to monitor automatically: Semantic Scholar APIs, arXiv RSS keywor
 - adk web --host 0.0.0.0
 Access it from other devices on your network using:
 http://192.168.1.70:8000
+
+- echo "AI agents in creative writing" | adk run data_hunter_agent
