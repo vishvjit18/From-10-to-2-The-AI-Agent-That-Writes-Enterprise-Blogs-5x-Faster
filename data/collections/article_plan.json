@@ -1,0 +1,255 @@
+{
+  "timestamp": "20251125_215657",
+  "invocation_id": "e-0b46c09f-dc64-4400-9c4f-f438eeb03f28",
+  "agent_name": "article_planner",
+  "output_key": "article_plan",
+  "output": {
+    "overview": {
+      "target_audience": "Small to medium-sized business owners and marketing managers in Lexington, KY, seeking to understand and select website design services.",
+      "purpose": "To provide a comprehensive guide to website design services in Lexington, KY, helping businesses make informed decisions by detailing local providers, service offerings, and the selection process.",
+      "key_message": "Choosing the right website design partner in Lexington is crucial for business growth, and understanding the local landscape, service specifics, and your own needs is the first step to success.",
+      "value_proposition": "This article demystifies the process of finding and hiring website design services in Lexington, KY, by offering insights into local providers, clarifying service types, and addressing common client concerns.",
+      "differentiation_strategy": "This article will differentiate itself by focusing specifically on the Lexington, KY market, offering detailed insights into local agencies (addressing the gap in specific agency details and competitive landscape), providing guidance through the buyer's journey, and clarifying specialized services like FileMaker Pro integration for Applied Arts Ltd."
+    },
+    "structure": [
+      {
+        "title": "Introduction: The Importance of a Professional Website in Lexington",
+        "description": "Set the stage by explaining why a strong online presence is vital for businesses in the Lexington, KY market, touching upon local economic context and general digital trends.",
+        "estimated_word_count": 200,
+        "key_points": [
+          "The role of a website in today's business environment.",
+          "Specific relevance to Lexington's business ecosystem.",
+          "Brief overview of what the article will cover."
+        ],
+        "evidence_needs": [
+          "Local business statistics for Lexington, KY (e.g., growth of tech/service industries).",
+          "General statistics on website effectiveness for businesses."
+        ],
+        "technical_depth": "low",
+        "practical_examples": [
+          "Brief anecdote about a local business succeeding with a good website."
+        ],
+        "conceptual_distinctions": [],
+        "focus_areas": []
+      },
+      {
+        "title": "Understanding Your Website Design Needs",
+        "description": "Guide readers through identifying their specific requirements before looking for a service provider, covering goals, audience, and functional needs.",
+        "estimated_word_count": 400,
+        "key_points": [
+          "Defining business goals for the website (lead generation, e-commerce, branding).",
+          "Identifying the target audience and user experience (UX) expectations.",
+          "Determining essential website features and functionalities.",
+          "Budget considerations."
+        ],
+        "evidence_needs": [
+          "Checklists for defining website requirements.",
+          "Examples of different website goals and their corresponding features."
+        ],
+        "technical_depth": "low",
+        "practical_examples": [
+          "Scenario: A local restaurant needing online ordering vs. a B2B service needing lead capture.",
+          "Examples of essential features: contact forms, galleries, blogs, e-commerce integration."
+        ],
+        "conceptual_distinctions": [
+          "Website goals vs. business goals.",
+          "User experience (UX) vs. User Interface (UI)."
+        ],
+        "focus_areas": []
+      },
+      {
+        "title": "Lexington's Web Design Landscape: Key Players and Services",
+        "description": "Provide an overview of the local website design market in Lexington, highlighting known agencies and their specializations.",
+        "estimated_word_count": 600,
+        "key_points": [
+          "Introduction to the local market and its key players.",
+          "Detailed profile: Applied Arts Ltd. (focus on general web design capabilities beyond FileMaker Pro, portfolio examples).",
+          "Profile: Zed Digital (based on Lextran contract).",
+          "Profile: TCG America (technology solutions including web aspects).",
+          "Mention of other potential local agencies (if research yields more names).",
+          "Overview of services typically offered (design, development, SEO, maintenance)."
+        ],
+        "evidence_needs": [
+          "Information on Applied Arts Ltd.'s general web design portfolio and client testimonials.",
+          "Details on Zed Digital and TCG America's web design specific services.",
+          "List of other known Lexington web design agencies and their primary focus."
+        ],
+        "technical_depth": "medium",
+        "practical_examples": [
+          "Case studies or project highlights for each profiled agency.",
+          "Examples of different service packages (e.g., basic site, e-commerce site, custom build)."
+        ],
+        "conceptual_distinctions": [
+          "General web design vs. specialized development (like FileMaker Pro).",
+          "Web design vs. web development vs. digital marketing."
+        ],
+        "focus_areas": [
+          "technical_implementation"
+        ]
+      },
+      {
+        "title": "Local vs. Remote Web Design Services: A Lexington Perspective",
+        "description": "Compare the advantages and disadvantages of hiring a local Lexington-based agency versus a remote team.",
+        "estimated_word_count": 350,
+        "key_points": [
+          "Benefits of local: understanding the Lexington market, in-person meetings, community connection.",
+          "Drawbacks of local: potentially higher costs, limited talent pool.",
+          "Benefits of remote: wider talent pool, potentially lower costs, flexibility.",
+          "Drawbacks of remote: communication challenges, time zone differences, less local market insight."
+        ],
+        "evidence_needs": [
+          "Anecdotal evidence or general industry data comparing local vs. remote service experiences.",
+          "Client testimonials (if available) from Lexington businesses using either local or remote services."
+        ],
+        "technical_depth": "low",
+        "practical_examples": [
+          "Scenarios where local presence is crucial (e.g., physical businesses needing local SEO focus).",
+          "Scenarios where remote flexibility is beneficial (e.g., startups with tight budgets)."
+        ],
+        "conceptual_distinctions": [
+          "Local market understanding vs. broad industry expertise."
+        ],
+        "focus_areas": []
+      },
+      {
+        "title": "The Website Design Process: What to Expect",
+        "description": "Demystify the typical website design and development process from initial consultation to launch and beyond.",
+        "estimated_word_count": 500,
+        "key_points": [
+          "Initial consultation and discovery phase.",
+          "Proposal and contract.",
+          "Design mockups and wireframing.",
+          "Development and content integration.",
+          "Testing and quality assurance.",
+          "Launch and post-launch support/maintenance.",
+          "The role of communication and feedback throughout."
+        ],
+        "evidence_needs": [
+          "A typical project timeline breakdown.",
+          "Examples of wireframes and design mockups.",
+          "Information on common pitfalls and how to avoid them."
+        ],
+        "technical_depth": "medium",
+        "practical_examples": [
+          "A step-by-step walkthrough of a hypothetical website project.",
+          "Examples of feedback loops and revision cycles."
+        ],
+        "conceptual_distinctions": [
+          "Wireframe vs. Mockup vs. Prototype.",
+          "Design vs. Development vs. Deployment."
+        ],
+        "focus_areas": [
+          "technical_implementation"
+        ]
+      },
+      {
+        "title": "Choosing Your Lexington Web Design Partner: A Practical Checklist",
+        "description": "Provide actionable steps and criteria for businesses to evaluate and select the best website design agency for their needs in Lexington.",
+        "estimated_word_count": 450,
+        "key_points": [
+          "Reviewing portfolios and case studies.",
+          "Assessing agency expertise and specialization.",
+          "Understanding their process and communication style.",
+          "Checking client testimonials and references.",
+          "Evaluating pricing models and proposals.",
+          "Considering long-term support and maintenance options."
+        ],
+        "evidence_needs": [
+          "A downloadable checklist for evaluating agencies.",
+          "Questions to ask potential web design partners.",
+          "Examples of red flags to watch out for."
+        ],
+        "technical_depth": "low",
+        "practical_examples": [
+          "How to interpret a web design proposal.",
+          "Examples of good vs. bad client references."
+        ],
+        "conceptual_distinctions": [],
+        "focus_areas": []
+      },
+      {
+        "title": "Leveraging Local Resources: Awesome Inc, Commerce Lexington, and KSBDC",
+        "description": "Highlight how local Lexington business support organizations can aid businesses in their website design journey.",
+        "estimated_word_count": 250,
+        "key_points": [
+          "Overview of Awesome Inc's role in supporting tech/creative companies.",
+          "Commerce Lexington Inc.'s role in connecting businesses with resources.",
+          "Kentucky Small Business Development Center (KSBDC) services (training, consulting).",
+          "How these organizations can help in finding or vetting web design services."
+        ],
+        "evidence_needs": [
+          "Links to the relevant organizations.",
+          "Information on specific programs or workshops they offer related to digital presence."
+        ],
+        "technical_depth": "none",
+        "practical_examples": [
+          "Scenario: A startup using Awesome Inc for networking and finding design leads.",
+          "Scenario: A small business using KSBDC for guidance on selecting a web developer."
+        ],
+        "conceptual_distinctions": [],
+        "focus_areas": []
+      },
+      {
+        "title": "Conclusion: Investing in Your Online Future in Lexington",
+        "description": "Summarize key takeaways and reiterate the importance of a strategic approach to website design for businesses in Lexington.",
+        "estimated_word_count": 150,
+        "key_points": [
+          "Recap of the importance of professional web design.",
+          "Emphasis on informed decision-making.",
+          "Encouragement to leverage local resources and expertise.",
+          "Final call to action (e.g., start evaluating needs, contact local agencies)."
+        ],
+        "evidence_needs": [],
+        "technical_depth": "low",
+        "practical_examples": [],
+        "conceptual_distinctions": [],
+        "focus_areas": []
+      }
+    ],
+    "focus_areas_mapping": {
+      "technical_implementation": [
+        "Lexington's Web Design Landscape: Key Players and Services",
+        "The Website Design Process: What to Expect"
+      ],
+      "evidence_and_metrics": [],
+      "conceptual_distinctions": [
+        "Understanding Your Website Design Needs",
+        "Lexington's Web Design Landscape: Key Players and Services",
+        "The Website Design Process: What to Expect"
+      ],
+      "ethical_considerations": []
+    },
+    "visual_opportunities": [
+      {
+        "type": "diagram",
+        "description": "A visual representation of the website design process, from discovery to launch and maintenance.",
+        "suggested_location": "The Website Design Process: What to Expect section",
+        "purpose": "To clearly illustrate the sequential steps and key milestones in a typical web design project."
+      },
+      {
+        "type": "infographic",
+        "description": "A comparison chart highlighting the pros and cons of local vs. remote web design services.",
+        "suggested_location": "Local vs. Remote Web Design Services: A Lexington Perspective section",
+        "purpose": "To provide a quick, scannable overview of the trade-offs involved in choosing between local and remote agencies."
+      },
+      {
+        "type": "checklist",
+        "description": "A downloadable or printable checklist for evaluating website design agencies.",
+        "suggested_location": "Choosing Your Lexington Web Design Partner: A Practical Checklist section",
+        "purpose": "To offer readers a tangible tool they can use during their agency selection process."
+      },
+      {
+        "type": "data_visualization",
+        "description": "A simple chart or map showing the concentration of web design service providers in Lexington, KY (if data is available, otherwise a conceptual representation).",
+        "suggested_location": "Lexington's Web Design Landscape: Key Players and Services section",
+        "purpose": "To visually represent the local market density and introduce the key players."
+      }
+    ],
+    "tone_and_style": {
+      "professional_tone": "Maintain a professional, informative, and helpful tone throughout the article. Avoid overly casual language or jargon where possible.",
+      "technical_accessibility_balance": "Balance technical details with clear explanations. Define technical terms when introduced and focus on their practical implications for businesses. For instance, explain what UX means in terms of user satisfaction and conversion rates.",
+      "critical_thinking": "Encourage critical thinking by presenting balanced views, especially in the local vs. remote section. Prompt readers to consider their specific business context when making decisions.",
+      "evidence_based_approach": "Support claims with data, statistics, and concrete examples. When discussing local agencies, rely on publicly available information and clearly state when information is limited (e.g., about specific service details)."
+    }
+  }
+}

@@ -72,9 +72,8 @@ synthesis_agent = LlmAgent(
 root_agent = SequentialAgent(
     name="gap_analyzer_agent",
     description=(
-        "Analyzes top SERP results for a keyword to summarize themes, "
-        "formats, and opportunities for differentiation. Uses specialized "
-        "sub-agents for query interpretation and SERP collection."
+        "Master research agent that plans research queries and collects raw SERP/market data. "
+        "Uses specialized sub-agents for step 1: query planning, step 2: source collection, and step 3: gap analysis."
     ),
     sub_agents=[
         query_interpreter_agent,  # Step 1: Interpret query, expand to search strings

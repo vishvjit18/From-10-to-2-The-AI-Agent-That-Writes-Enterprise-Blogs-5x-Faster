@@ -211,3 +211,15 @@ def filter_for_quality_assurance(article_plan: Dict[str, Any]) -> Dict[str, Any]
     """
     return article_plan
 
+
+
+
+
+
+
+
+
+
+
+
+

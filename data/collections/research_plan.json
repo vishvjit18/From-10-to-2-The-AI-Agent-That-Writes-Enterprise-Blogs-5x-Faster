@@ -1,27 +1,27 @@
 {
-  "timestamp": "20251122_101515",
-  "invocation_id": "e-e32a6810-7694-4554-9c61-a18a0ed53102",
+  "timestamp": "20251125_221058",
+  "invocation_id": "e-a0570f1c-f96d-4164-960e-a37890fc49f3",
   "agent_name": "query_planner",
   "output_key": "research_plan",
   "output": {
     "tasks": [
       {
-        "search_query": "AI agents creative writing filetype:pdf site:.edu",
+        "search_query": "AI in content creation trends filetype:pdf site:.org",
         "source_pref": "academic",
         "freshness_window": "≤18 months",
-        "reasoning": "To understand the current academic research and theoretical frameworks surrounding AI's role in creative writing, focusing on recent developments."
+        "reasoning": "To understand the latest academic research and emerging trends in AI applications for content creation, focusing on recent advancements and their theoretical underpinnings."
       },
       {
-        "search_query": "AI tools for writers creative process filetype:pdf site:.org",
+        "search_query": "Generative AI for marketing content strategy filetype:pdf site:.org",
         "source_pref": "industry",
         "freshness_window": "2024-2025",
-        "reasoning": "To identify practical AI tools and applications currently being developed or used by writers, and to understand their impact on the creative workflow, prioritizing the most recent industry offerings."
+        "reasoning": "To gather insights into how businesses are currently implementing AI in their content marketing strategies, looking for best practices and case studies from the immediate future."
       },
       {
-        "search_query": "ethical considerations AI creative writing filetype:pdf site:.edu",
+        "search_query": "Ethical considerations AI content generation filetype:pdf site:.org",
         "source_pref": "academic",
         "freshness_window": "≤18 months",
-        "reasoning": "To explore the ethical implications and challenges associated with using AI in creative writing, such as authorship, originality, and bias, from an academic perspective."
+        "reasoning": "To explore the critical ethical challenges and frameworks surrounding AI-generated content, ensuring responsible and compliant content creation practices."
       }
     ]
   }
