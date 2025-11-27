@@ -9,8 +9,10 @@ of the article plan, improving token efficiency and focus.
 """
 
 import json
+
 from google.adk.agents import LlmAgent
 from google.adk.agents.readonly_context import ReadonlyContext
+from utils.retry import gemini_model
 from utils.storage import create_markdown_storage_callback
 from .plan_filters import _load_article_plan, filter_for_technical_writer
 
@@ -119,10 +121,9 @@ async def _instruction_provider(context: ReadonlyContext) -> str:
     
     return instruction
 
-
 technical_writer_agent = LlmAgent(
     name="technical_writer",
-    model="gemini-2.5-flash-lite",
+    model=gemini_model,
     description=(
         "Writes technical deep-dive sections with architecture details, implementation specifics, "
         "and system design based on filtered article plan context. Delivers comprehensive technical "

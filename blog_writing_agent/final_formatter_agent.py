@@ -9,8 +9,10 @@ Takes input from Introduction Writer Agent and Technical Writer Agent outputs.
 
 import re
 from pathlib import Path
+
 from google.adk.agents import LlmAgent
 from google.adk.agents.readonly_context import ReadonlyContext
+from utils.retry import gemini_model
 from utils.storage import create_markdown_storage_callback
 
 
@@ -129,10 +131,9 @@ async def _instruction_provider(context: ReadonlyContext) -> str:
     
     return instruction
 
-
 final_formatter_agent = LlmAgent(
     name="final_formatter",
-    model="gemini-2.5-flash-lite",
+    model=gemini_model,
     description=(
         "Combines introduction and technical sections into a publication-ready blog article "
         "with optimized markdown formatting, structure, and professional presentation."

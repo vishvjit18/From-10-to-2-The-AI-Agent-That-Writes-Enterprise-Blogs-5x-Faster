@@ -5,11 +5,14 @@ This agent handles Step 1: analyzing research and gap analysis files to create
 a comprehensive, structured article plan with sections, key points, and content requirements.
 """
 import json
+from pathlib import Path
+
 from google.adk.agents import LlmAgent
 from google.adk.agents.readonly_context import ReadonlyContext
+from utils.retry import gemini_model
 from utils.storage import create_storage_callback
-from pathlib import Path
 from . import ArticlePlan
+
 
 def _load_analysis_files() -> tuple[str, str]:
     """Load the analysis files from data/collections directory."""
@@ -40,10 +43,9 @@ def _load_analysis_files() -> tuple[str, str]:
 
 
 data_analysis, gap_analysis = _load_analysis_files()
-
 root_agent = LlmAgent(
     name="article_planner",
-    model="gemini-2.5-flash-lite",
+    model=gemini_model,
     description=(
         "Analyzes research and gap analysis files to create a comprehensive, structured "
         "article plan with sections, key points, evidence needs, and content requirements."

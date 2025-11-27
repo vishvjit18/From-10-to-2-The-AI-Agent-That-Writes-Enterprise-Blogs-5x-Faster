@@ -8,12 +8,13 @@ specific research tasks with search parameters.
 from google.adk.agents import LlmAgent
 
 from . import ResearchPlan
+from utils.rotating_gemini import rotating_gemini_model
 from utils.storage import create_storage_callback
 
 
 query_planner_agent = LlmAgent(
     name="query_planner",
-    model="gemini-2.5-flash-lite",
+    model=rotating_gemini_model,
     description=(
         "Interprets user research briefs and expands them into 1-4 specific research "
         "tasks with search parameters optimized for data collection."

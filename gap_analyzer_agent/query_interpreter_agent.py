@@ -8,6 +8,7 @@ precise search strings for SERP analysis.
 from pydantic import BaseModel, Field
 
 from google.adk.agents import LlmAgent
+from utils.retry import gemini_model
 from utils.storage import create_storage_callback
 
 
@@ -32,10 +33,9 @@ class QueryInterpretationOutput(BaseModel):
         )
     )
 
-
 query_interpreter_agent = LlmAgent(
     name="query_interpreter",
-    model="gemini-2.5-flash-lite",
+    model=gemini_model,
     description=(
         "Interprets user queries and expands them into 1-2 precise search "
         "strings optimized for competitive SERP analysis."

@@ -3,15 +3,18 @@ DataHunter agent definition for the BlogResearch AI system.
 
 This agent orchestrates research planning and data collection from SERP sources.
 """
-from .query_planner_agent import query_planner_agent
+
 from google.adk.agents import LlmAgent, SequentialAgent
 from google.adk.tools import google_search
+from utils.retry import gemini_model
 from utils.storage import create_markdown_storage_callback
+from .query_planner_agent import query_planner_agent
+
 
 # Tool-using agent that executes search tasks
 tool_collector_agent = LlmAgent(
     name="tool_collector",
-    model="gemini-2.5-flash-lite",
+    model=gemini_model,
     description=(
         "Executes research tasks by calling search tools and collecting raw results."
     ),
@@ -35,7 +38,7 @@ tool_collector_agent = LlmAgent(
 # Synthesis agent that processes SERP results into gap analysis
 synthesis_agent = LlmAgent(
     name="gap_synthesis",
-    model="gemini-2.5-flash-lite",
+    model=gemini_model,
     description=(
         "Synthesizes SERP results into gap analysis, themes, and "
         "differentiation opportunities."

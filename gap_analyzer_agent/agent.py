@@ -11,13 +11,15 @@ The agent uses a multi-agent architecture with specialized sub-agents:
 """
 
 from google.adk.agents import LlmAgent, SequentialAgent
+from google.adk.tools import web_search
+from utils.retry import gemini_model
 from utils.storage import create_markdown_storage_callback
 from .query_interpreter_agent import query_interpreter_agent
-from google.adk.tools import google_search
+
 
 serp_tool_agent = LlmAgent(
     name="serp_tool_user",
-    model="gemini-2.5-flash-lite",
+    model=gemini_model,
     description=(
         "Executes Google searches and returns the raw results for structuring."
     ),
@@ -31,14 +33,14 @@ serp_tool_agent = LlmAgent(
         "4. Return the complete set of raw results for structuring.\n\n"
         "Execute each search independently but collect all results together. "
     ),
-    tools=[google_search],
+    tools=[web_search],
     output_key="raw_serp_data",
 )
 
 # Synthesis agent that processes SERP results into gap analysis
 synthesis_agent = LlmAgent(
     name="gap_synthesis",
-    model="gemini-2.5-flash-lite",
+    model=gemini_model,
     description=(
         "Synthesizes SERP results into gap analysis, themes, and "
         "differentiation opportunities."
