@@ -1,255 +1,315 @@
 {
-  "timestamp": "20251125_215657",
-  "invocation_id": "e-0b46c09f-dc64-4400-9c4f-f438eeb03f28",
+  "timestamp": "20251201_223507",
+  "invocation_id": "e-885e0fd6-3f3d-4acf-95c0-0e9d1932fbaf",
   "agent_name": "article_planner",
   "output_key": "article_plan",
   "output": {
     "overview": {
-      "target_audience": "Small to medium-sized business owners and marketing managers in Lexington, KY, seeking to understand and select website design services.",
-      "purpose": "To provide a comprehensive guide to website design services in Lexington, KY, helping businesses make informed decisions by detailing local providers, service offerings, and the selection process.",
-      "key_message": "Choosing the right website design partner in Lexington is crucial for business growth, and understanding the local landscape, service specifics, and your own needs is the first step to success.",
-      "value_proposition": "This article demystifies the process of finding and hiring website design services in Lexington, KY, by offering insights into local providers, clarifying service types, and addressing common client concerns.",
-      "differentiation_strategy": "This article will differentiate itself by focusing specifically on the Lexington, KY market, offering detailed insights into local agencies (addressing the gap in specific agency details and competitive landscape), providing guidance through the buyer's journey, and clarifying specialized services like FileMaker Pro integration for Applied Arts Ltd."
+      "target_audience": "Writers, authors, novelists, and creative professionals interested in leveraging AI tools to enhance their writing process, as well as educators and students exploring AI in creative fields.",
+      "purpose": "To provide a comprehensive guide on using AI agents in creative writing, covering their capabilities, practical applications, ethical considerations, and strategies for responsible integration, while addressing identified content gaps.",
+      "key_message": "AI agents are powerful co-creative tools that can significantly augment human creativity in writing when used thoughtfully and ethically, but human oversight remains paramount.",
+      "value_proposition": "Readers will gain a clear understanding of how AI can assist in creative writing, learn practical techniques for integrating AI tools into their workflow, navigate ethical challenges, and discover strategies to maintain their unique authorial voice.",
+      "differentiation_strategy": "This article will differentiate itself by offering in-depth comparisons of AI tools, providing practical, step-by-step integration strategies, addressing the nuances of 'augmented creativity' and preserving the 'human voice', and offering actionable ethical frameworks, going beyond general discussions to provide concrete guidance."
     },
     "structure": [
       {
-        "title": "Introduction: The Importance of a Professional Website in Lexington",
-        "description": "Set the stage by explaining why a strong online presence is vital for businesses in the Lexington, KY market, touching upon local economic context and general digital trends.",
-        "estimated_word_count": 200,
-        "key_points": [
-          "The role of a website in today's business environment.",
-          "Specific relevance to Lexington's business ecosystem.",
-          "Brief overview of what the article will cover."
-        ],
-        "evidence_needs": [
-          "Local business statistics for Lexington, KY (e.g., growth of tech/service industries).",
-          "General statistics on website effectiveness for businesses."
-        ],
-        "technical_depth": "low",
-        "practical_examples": [
-          "Brief anecdote about a local business succeeding with a good website."
-        ],
-        "conceptual_distinctions": [],
-        "focus_areas": []
-      },
-      {
-        "title": "Understanding Your Website Design Needs",
-        "description": "Guide readers through identifying their specific requirements before looking for a service provider, covering goals, audience, and functional needs.",
+        "title": "Introduction: The Evolving Landscape of AI in Creative Writing",
+        "description": "Set the stage by introducing AI agents as transformative tools for creative writers, briefly touching upon their growing capabilities and the dual nature of opportunities and challenges.",
         "estimated_word_count": 400,
         "key_points": [
-          "Defining business goals for the website (lead generation, e-commerce, branding).",
-          "Identifying the target audience and user experience (UX) expectations.",
-          "Determining essential website features and functionalities.",
-          "Budget considerations."
+          "Introduction to AI agents in the context of creative writing.",
+          "Brief overview of the current state of AI in literature and storytelling.",
+          "The central theme: AI as a co-creator, not a replacement.",
+          "Outline of the article's scope: capabilities, applications, ethics, and practical integration."
         ],
         "evidence_needs": [
-          "Checklists for defining website requirements.",
-          "Examples of different website goals and their corresponding features."
+          "Statistics on AI adoption in creative industries (if available).",
+          "General trends in AI development relevant to NLP and creative generation."
         ],
         "technical_depth": "low",
         "practical_examples": [
-          "Scenario: A local restaurant needing online ordering vs. a B2B service needing lead capture.",
-          "Examples of essential features: contact forms, galleries, blogs, e-commerce integration."
+          "Anecdotal examples of AI's presence in modern storytelling."
         ],
         "conceptual_distinctions": [
-          "Website goals vs. business goals.",
-          "User experience (UX) vs. User Interface (UI)."
-        ],
-        "focus_areas": []
-      },
-      {
-        "title": "Lexington's Web Design Landscape: Key Players and Services",
-        "description": "Provide an overview of the local website design market in Lexington, highlighting known agencies and their specializations.",
-        "estimated_word_count": 600,
-        "key_points": [
-          "Introduction to the local market and its key players.",
-          "Detailed profile: Applied Arts Ltd. (focus on general web design capabilities beyond FileMaker Pro, portfolio examples).",
-          "Profile: Zed Digital (based on Lextran contract).",
-          "Profile: TCG America (technology solutions including web aspects).",
-          "Mention of other potential local agencies (if research yields more names).",
-          "Overview of services typically offered (design, development, SEO, maintenance)."
-        ],
-        "evidence_needs": [
-          "Information on Applied Arts Ltd.'s general web design portfolio and client testimonials.",
-          "Details on Zed Digital and TCG America's web design specific services.",
-          "List of other known Lexington web design agencies and their primary focus."
-        ],
-        "technical_depth": "medium",
-        "practical_examples": [
-          "Case studies or project highlights for each profiled agency.",
-          "Examples of different service packages (e.g., basic site, e-commerce site, custom build)."
-        ],
-        "conceptual_distinctions": [
-          "General web design vs. specialized development (like FileMaker Pro).",
-          "Web design vs. web development vs. digital marketing."
+          "AI as a tool vs. AI as a replacement."
         ],
         "focus_areas": [
-          "technical_implementation"
+          "conceptual_distinctions"
         ]
       },
       {
-        "title": "Local vs. Remote Web Design Services: A Lexington Perspective",
-        "description": "Compare the advantages and disadvantages of hiring a local Lexington-based agency versus a remote team.",
-        "estimated_word_count": 350,
-        "key_points": [
-          "Benefits of local: understanding the Lexington market, in-person meetings, community connection.",
-          "Drawbacks of local: potentially higher costs, limited talent pool.",
-          "Benefits of remote: wider talent pool, potentially lower costs, flexibility.",
-          "Drawbacks of remote: communication challenges, time zone differences, less local market insight."
-        ],
-        "evidence_needs": [
-          "Anecdotal evidence or general industry data comparing local vs. remote service experiences.",
-          "Client testimonials (if available) from Lexington businesses using either local or remote services."
-        ],
-        "technical_depth": "low",
-        "practical_examples": [
-          "Scenarios where local presence is crucial (e.g., physical businesses needing local SEO focus).",
-          "Scenarios where remote flexibility is beneficial (e.g., startups with tight budgets)."
-        ],
-        "conceptual_distinctions": [
-          "Local market understanding vs. broad industry expertise."
-        ],
-        "focus_areas": []
-      },
-      {
-        "title": "The Website Design Process: What to Expect",
-        "description": "Demystify the typical website design and development process from initial consultation to launch and beyond.",
+        "title": "Understanding the Core Technologies: How AI Writes",
+        "description": "Explain the fundamental AI technologies (NLP, ML, specific models) that power creative writing tools, focusing on what writers need to know without overwhelming technical detail.",
         "estimated_word_count": 500,
         "key_points": [
-          "Initial consultation and discovery phase.",
-          "Proposal and contract.",
-          "Design mockups and wireframing.",
-          "Development and content integration.",
-          "Testing and quality assurance.",
-          "Launch and post-launch support/maintenance.",
-          "The role of communication and feedback throughout."
+          "Basics of Natural Language Processing (NLP) and Machine Learning (ML) in text generation.",
+          "Explanation of key AI architectures: Transformers, RNNs, LSTMs (simplified).",
+          "How AI models are trained on vast datasets.",
+          "The concept of prompt engineering and its importance.",
+          "Differentiating between rule-based systems and generative AI."
         ],
         "evidence_needs": [
-          "A typical project timeline breakdown.",
-          "Examples of wireframes and design mockups.",
-          "Information on common pitfalls and how to avoid them."
+          "Simplified explanations of AI concepts.",
+          "Examples of how these technologies enable specific writing functions."
         ],
         "technical_depth": "medium",
         "practical_examples": [
-          "A step-by-step walkthrough of a hypothetical website project.",
-          "Examples of feedback loops and revision cycles."
+          "Illustrative examples of how prompts influence AI output.",
+          "Simple analogies for complex AI concepts."
         ],
         "conceptual_distinctions": [
-          "Wireframe vs. Mockup vs. Prototype.",
-          "Design vs. Development vs. Deployment."
+          "Generative AI vs. other forms of AI.",
+          "The role of training data in AI output."
+        ],
+        "focus_areas": [
+          "technical_implementation",
+          "conceptual_distinctions"
+        ]
+      },
+      {
+        "title": "AI as Your Co-Pilot: Practical Applications Across the Writing Process",
+        "description": "Detail how AI agents can be used in specific stages of the creative writing process, providing concrete examples and strategies for each.",
+        "estimated_word_count": 800,
+        "key_points": [
+          "Idea Generation & Brainstorming: Using AI to overcome writer's block and explore new concepts.",
+          "Character Development: Creating backstories, personality traits, and dialogue.",
+          "World-Building: Generating descriptions, lore, and setting details.",
+          "Outlining & Structuring: Developing plot points and narrative arcs.",
+          "Drafting Assistance: Generating sections, expanding ideas, and suggesting continuations.",
+          "Editing & Revision: Grammar, style, tone checks, and consistency improvements."
+        ],
+        "evidence_needs": [
+          "Specific prompts and techniques for each writing stage.",
+          "Examples of AI-generated content for each application."
+        ],
+        "technical_depth": "low",
+        "practical_examples": [
+          "Step-by-step tutorials for common tasks (e.g., generating character profiles, outlining a chapter).",
+          "Workflow examples demonstrating AI integration at different stages."
+        ],
+        "conceptual_distinctions": [
+          "AI for inspiration vs. AI for drafting.",
+          "AI for consistency vs. AI for variation."
         ],
         "focus_areas": [
           "technical_implementation"
         ]
       },
       {
-        "title": "Choosing Your Lexington Web Design Partner: A Practical Checklist",
-        "description": "Provide actionable steps and criteria for businesses to evaluate and select the best website design agency for their needs in Lexington.",
-        "estimated_word_count": 450,
+        "title": "Tool Showdown: Comparing Popular AI Writing Assistants",
+        "description": "Provide an in-depth comparison of leading AI writing tools (e.g., ChatGPT, Sudowrite, Jasper AI, NovelAI), analyzing their strengths, weaknesses, ideal use cases, and pricing for creative writers.",
+        "estimated_word_count": 700,
         "key_points": [
-          "Reviewing portfolios and case studies.",
-          "Assessing agency expertise and specialization.",
-          "Understanding their process and communication style.",
-          "Checking client testimonials and references.",
-          "Evaluating pricing models and proposals.",
-          "Considering long-term support and maintenance options."
+          "Overview of key AI writing tools relevant to creative writers.",
+          "Feature comparison: capabilities, limitations, user interface.",
+          "Target audience and best use cases for each tool (e.g., fiction, poetry, screenwriting).",
+          "Pricing models and accessibility.",
+          "User experience and learning curve."
         ],
         "evidence_needs": [
-          "A downloadable checklist for evaluating agencies.",
-          "Questions to ask potential web design partners.",
-          "Examples of red flags to watch out for."
+          "Direct comparisons of tool features and performance.",
+          "Pricing information and subscription tiers.",
+          "User reviews or expert assessments."
+        ],
+        "technical_depth": "medium",
+        "practical_examples": [
+          "Side-by-side examples of output from different tools for the same prompt.",
+          "Scenarios where one tool might be preferable over another."
+        ],
+        "conceptual_distinctions": [
+          "General-purpose chatbots vs. specialized writing tools.",
+          "Subscription models vs. pay-as-you-go."
+        ],
+        "focus_areas": [
+          "technical_implementation"
+        ]
+      },
+      {
+        "title": "The 'Human Voice' in the Age of AI: Preserving Authenticity",
+        "description": "Explore the concern that AI may diminish the unique human voice in writing and provide strategies for writers to maintain their authentic style and perspective.",
+        "estimated_word_count": 600,
+        "key_points": [
+          "Defining the 'human voice' in creative writing.",
+          "The risks of AI homogenization and loss of authenticity.",
+          "Strategies for leveraging AI while preserving unique style (e.g., editing AI output, using AI for specific elements).",
+          "The role of intention and conscious AI integration.",
+          "Developing a personal manifesto for AI use in writing."
+        ],
+        "evidence_needs": [
+          "Insights from authors who prioritize authenticity while using AI.",
+          "Theoretical frameworks on authorial voice.",
+          "Examples of subtle AI influence and how to counteract it."
         ],
         "technical_depth": "low",
         "practical_examples": [
-          "How to interpret a web design proposal.",
-          "Examples of good vs. bad client references."
+          "Editing exercises: transforming generic AI text into a distinct voice.",
+          "Case studies of authors maintaining their voice with AI assistance."
         ],
-        "conceptual_distinctions": [],
-        "focus_areas": []
+        "conceptual_distinctions": [
+          "AI as an echo vs. AI as a muse.",
+          "Authenticity as a conscious choice."
+        ],
+        "focus_areas": [
+          "conceptual_distinctions"
+        ]
       },
       {
-        "title": "Leveraging Local Resources: Awesome Inc, Commerce Lexington, and KSBDC",
-        "description": "Highlight how local Lexington business support organizations can aid businesses in their website design journey.",
-        "estimated_word_count": 250,
+        "title": "Navigating the Ethical Maze: Authorship, Copyright, and Bias",
+        "description": "Address the critical ethical considerations surrounding AI in creative writing, offering practical guidance and frameworks for responsible use.",
+        "estimated_word_count": 700,
         "key_points": [
-          "Overview of Awesome Inc's role in supporting tech/creative companies.",
-          "Commerce Lexington Inc.'s role in connecting businesses with resources.",
-          "Kentucky Small Business Development Center (KSBDC) services (training, consulting).",
-          "How these organizations can help in finding or vetting web design services."
+          "Authorship and Ownership: Who owns AI-generated or AI-assisted work?",
+          "Copyright challenges and evolving legal landscapes.",
+          "Plagiarism and originality concerns: identifying and avoiding AI-generated text that mimics existing works.",
+          "Bias in AI: Recognizing and mitigating cultural insensitivity, stereotyping, and misrepresentation.",
+          "Transparency: When and how to disclose AI use.",
+          "Developing personal ethical guidelines for AI in writing."
         ],
         "evidence_needs": [
-          "Links to the relevant organizations.",
-          "Information on specific programs or workshops they offer related to digital presence."
+          "Current legal discussions and proposed frameworks for AI copyright.",
+          "Examples of bias in AI-generated text.",
+          "Best practices for disclosure and attribution.",
+          "Case law or notable legal cases (if any)."
         ],
-        "technical_depth": "none",
+        "technical_depth": "medium",
         "practical_examples": [
-          "Scenario: A startup using Awesome Inc for networking and finding design leads.",
-          "Scenario: A small business using KSBDC for guidance on selecting a web developer."
+          "Ethical checklists for writers.",
+          "Scenarios illustrating copyright dilemmas.",
+          "Examples of biased AI output and how to correct them."
         ],
-        "conceptual_distinctions": [],
-        "focus_areas": []
+        "conceptual_distinctions": [
+          "AI-assisted vs. AI-generated content.",
+          "Ethical use vs. legal requirements.",
+          "Mitigation vs. eradication of bias."
+        ],
+        "focus_areas": [
+          "ethical_considerations",
+          "conceptual_distinctions"
+        ]
       },
       {
-        "title": "Conclusion: Investing in Your Online Future in Lexington",
-        "description": "Summarize key takeaways and reiterate the importance of a strategic approach to website design for businesses in Lexington.",
-        "estimated_word_count": 150,
+        "title": "AI in the Classroom: Educating the Next Generation of Writers",
+        "description": "Discuss the impact of AI on creative writing education, focusing on pedagogical approaches for effective and ethical student use.",
+        "estimated_word_count": 500,
         "key_points": [
-          "Recap of the importance of professional web design.",
-          "Emphasis on informed decision-making.",
-          "Encouragement to leverage local resources and expertise.",
-          "Final call to action (e.g., start evaluating needs, contact local agencies)."
+          "The potential of AI to enhance student creativity and learning.",
+          "Challenges for educators: assessment, academic integrity.",
+          "Effective pedagogical strategies for teaching AI tools.",
+          "Developing critical thinking skills alongside AI use.",
+          "Curriculum ideas and sample lesson plans.",
+          "Fostering responsible AI use from an early stage."
         ],
-        "evidence_needs": [],
+        "evidence_needs": [
+          "Research on AI in education and its impact on creativity.",
+          "Examples of successful AI integration in writing courses.",
+          "Best practices for AI-related assignments and assessments."
+        ],
         "technical_depth": "low",
-        "practical_examples": [],
-        "conceptual_distinctions": [],
-        "focus_areas": []
+        "practical_examples": [
+          "Sample prompts for educational exercises.",
+          "Frameworks for grading AI-assisted work.",
+          "Activity ideas for classroom discussions on AI ethics."
+        ],
+        "conceptual_distinctions": [
+          "AI as a learning aid vs. AI as a shortcut.",
+          "Teaching *with* AI vs. teaching *about* AI."
+        ],
+        "focus_areas": [
+          "technical_implementation",
+          "ethical_considerations"
+        ]
+      },
+      {
+        "title": "The Future of Storytelling: AI and Human Collaboration",
+        "description": "Conclude by looking ahead at the future trajectory of AI in creative writing, emphasizing the enduring importance of human-AI collaboration and the ongoing evolution of the craft.",
+        "estimated_word_count": 400,
+        "key_points": [
+          "Emerging trends in AI for creative writing (e.g., multi-agent systems, personalized AI assistants).",
+          "The potential for AI to unlock new forms of narrative and interactive storytelling.",
+          "Reiteration of the symbiotic relationship between human creativity and AI.",
+          "The ongoing dialogue needed regarding ethics and best practices.",
+          "Final thoughts on embracing AI as a tool for expanding creative horizons."
+        ],
+        "evidence_needs": [
+          "Predictions from AI researchers and futurists.",
+          "Examples of cutting-edge AI applications in storytelling."
+        ],
+        "technical_depth": "low",
+        "practical_examples": [
+          "Visionary examples of future AI-human creative partnerships."
+        ],
+        "conceptual_distinctions": [
+          "Predictive evolution of AI capabilities.",
+          "Human agency in shaping AI's future role."
+        ],
+        "focus_areas": [
+          "conceptual_distinctions"
+        ]
       }
     ],
     "focus_areas_mapping": {
       "technical_implementation": [
-        "Lexington's Web Design Landscape: Key Players and Services",
-        "The Website Design Process: What to Expect"
+        "Understanding the Core Technologies: How AI Writes",
+        "AI as Your Co-Pilot: Practical Applications Across the Writing Process",
+        "Tool Showdown: Comparing Popular AI Writing Assistants",
+        "AI in the Classroom: Educating the Next Generation of Writers"
       ],
-      "evidence_and_metrics": [],
+      "evidence_and_metrics": [
+        "Introduction: The Evolving Landscape of AI in Creative Writing",
+        "Understanding the Core Technologies: How AI Writes",
+        "AI as Your Co-Pilot: Practical Applications Across the Writing Process",
+        "Tool Showdown: Comparing Popular AI Writing Assistants",
+        "The 'Human Voice' in the Age of AI: Preserving Authenticity",
+        "Navigating the Ethical Maze: Authorship, Copyright, and Bias",
+        "AI in the Classroom: Educating the Next Generation of Writers",
+        "The Future of Storytelling: AI and Human Collaboration"
+      ],
       "conceptual_distinctions": [
-        "Understanding Your Website Design Needs",
-        "Lexington's Web Design Landscape: Key Players and Services",
-        "The Website Design Process: What to Expect"
+        "Introduction: The Evolving Landscape of AI in Creative Writing",
+        "Understanding the Core Technologies: How AI Writes",
+        "AI as Your Co-Pilot: Practical Applications Across the Writing Process",
+        "Tool Showdown: Comparing Popular AI Writing Assistants",
+        "The 'Human Voice' in the Age of AI: Preserving Authenticity",
+        "Navigating the Ethical Maze: Authorship, Copyright, and Bias",
+        "AI in the Classroom: Educating the Next Generation of Writers",
+        "The Future of Storytelling: AI and Human Collaboration"
       ],
-      "ethical_considerations": []
+      "ethical_considerations": [
+        "Navigating the Ethical Maze: Authorship, Copyright, and Bias",
+        "AI in the Classroom: Educating the Next Generation of Writers"
+      ]
     },
     "visual_opportunities": [
       {
         "type": "diagram",
-        "description": "A visual representation of the website design process, from discovery to launch and maintenance.",
-        "suggested_location": "The Website Design Process: What to Expect section",
-        "purpose": "To clearly illustrate the sequential steps and key milestones in a typical web design project."
+        "description": "A flowchart illustrating the AI-assisted writing process, showing decision points for human intervention and AI input at different stages.",
+        "suggested_location": "AI as Your Co-Pilot: Practical Applications Across the Writing Process",
+        "purpose": "To visually represent how AI can be integrated into a writer's workflow."
       },
       {
         "type": "infographic",
-        "description": "A comparison chart highlighting the pros and cons of local vs. remote web design services.",
-        "suggested_location": "Local vs. Remote Web Design Services: A Lexington Perspective section",
-        "purpose": "To provide a quick, scannable overview of the trade-offs involved in choosing between local and remote agencies."
+        "description": "A comparison table of popular AI writing tools, highlighting key features, pricing, strengths, and weaknesses.",
+        "suggested_location": "Tool Showdown: Comparing Popular AI Writing Assistants",
+        "purpose": "To provide a quick, scannable overview for readers choosing between different AI tools."
       },
       {
-        "type": "checklist",
-        "description": "A downloadable or printable checklist for evaluating website design agencies.",
-        "suggested_location": "Choosing Your Lexington Web Design Partner: A Practical Checklist section",
-        "purpose": "To offer readers a tangible tool they can use during their agency selection process."
+        "type": "infographic",
+        "description": "A visual summary of ethical considerations, including key questions related to authorship, copyright, bias, and transparency.",
+        "suggested_location": "Navigating the Ethical Maze: Authorship, Copyright, and Bias",
+        "purpose": "To distill complex ethical issues into an easily digestible format."
       },
       {
-        "type": "data_visualization",
-        "description": "A simple chart or map showing the concentration of web design service providers in Lexington, KY (if data is available, otherwise a conceptual representation).",
-        "suggested_location": "Lexington's Web Design Landscape: Key Players and Services section",
-        "purpose": "To visually represent the local market density and introduce the key players."
+        "type": "process_flow",
+        "description": "A visual representation of pedagogical approaches for teaching AI in creative writing classrooms.",
+        "suggested_location": "AI in the Classroom: Educating the Next Generation of Writers",
+        "purpose": "To illustrate different methods for integrating AI education effectively."
       }
     ],
     "tone_and_style": {
-      "professional_tone": "Maintain a professional, informative, and helpful tone throughout the article. Avoid overly casual language or jargon where possible.",
-      "technical_accessibility_balance": "Balance technical details with clear explanations. Define technical terms when introduced and focus on their practical implications for businesses. For instance, explain what UX means in terms of user satisfaction and conversion rates.",
-      "critical_thinking": "Encourage critical thinking by presenting balanced views, especially in the local vs. remote section. Prompt readers to consider their specific business context when making decisions.",
-      "evidence_based_approach": "Support claims with data, statistics, and concrete examples. When discussing local agencies, rely on publicly available information and clearly state when information is limited (e.g., about specific service details)."
+      "professional_tone": "Maintain a knowledgeable, authoritative, yet accessible tone. Avoid overly technical jargon unless explained clearly. Embrace a forward-thinking perspective while remaining grounded in practical realities.",
+      "technical_accessibility_balance": "Explain technical concepts (like NLP, Transformers) with clear analogies and simplified language suitable for writers who are not AI experts. Balance technical depth with practical relevance.",
+      "critical_thinking": "Encourage critical engagement with AI tools. Present a balanced view, acknowledging both the significant benefits and the potential drawbacks and ethical challenges. Avoid hyperbole or techno-optimism/pessimism.",
+      "evidence_based_approach": "Support claims with references to research, expert opinions, and practical examples where possible. Where quantitative data is lacking (as identified in the gap analysis), acknowledge this and focus on qualitative insights and reasoned arguments."
     }
   }
 }

@@ -15,6 +15,9 @@ from data_hunter_agent.agent import root_agent as data_hunter_agent
 from gap_analyzer_agent.agent import root_agent as gap_analyzer_agent
 from blog_writing_agent.agent import root_agent as article_planner_agent
 from blog_writing_agent.introduction_writer_agent import introduction_writer_agent
+from blog_writing_agent.evidence_writer_agent import evidence_writer_agent
+from blog_writing_agent.conceptual_writer_agent import conceptual_writer_agent
+from blog_writing_agent.conclusion_writer_agent import conclusion_writer_agent
 from blog_writing_agent.technical_writer_agent import technical_writer_agent
 from blog_writing_agent.final_formatter_agent import final_formatter_agent
 
@@ -32,6 +35,9 @@ root_agent = SequentialAgent(
         gap_analyzer_agent,         # Step 2: SERP analysis and gap identification
         article_planner_agent,      # Step 3: Create article plan from analysis files
         introduction_writer_agent,  # Step 4: Write introduction section
+        evidence_writer_agent,      # Step 5: Write evidence sections
+        conceptual_writer_agent,    # Step 6: Write conceptual sections
+        conclusion_writer_agent,    # Step 7: Write conclusion section
         technical_writer_agent,     # Step 5: Write technical sections
         final_formatter_agent,      # Step 6: Format final article
     ],

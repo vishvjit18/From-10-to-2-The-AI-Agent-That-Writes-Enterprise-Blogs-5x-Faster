@@ -11,7 +11,7 @@ The agent uses a multi-agent architecture with specialized sub-agents:
 """
 
 from google.adk.agents import LlmAgent, SequentialAgent
-from google.adk.tools import web_search
+from google.adk.tools import google_search
 from utils.retry import gemini_model
 from utils.storage import create_markdown_storage_callback
 from .query_interpreter_agent import query_interpreter_agent
@@ -33,7 +33,7 @@ serp_tool_agent = LlmAgent(
         "4. Return the complete set of raw results for structuring.\n\n"
         "Execute each search independently but collect all results together. "
     ),
-    tools=[web_search],
+    tools=[google_search],
     output_key="raw_serp_data",
 )
 

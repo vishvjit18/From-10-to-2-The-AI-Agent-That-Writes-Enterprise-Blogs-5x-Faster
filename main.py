@@ -8,7 +8,7 @@ import os
 import asyncio
 from dotenv import load_dotenv
 from google.adk.runners import InMemoryRunner
-from blog_writing_agent.technical_writer_agent import technical_writer_agent
+from blog_writing_agent.final_formatter_agent import final_formatter_agent
 
 # Load environment variables from .env file
 load_dotenv()
@@ -19,7 +19,7 @@ if GOOGLE_API_KEY:
     os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
 
 # Initialize runner for query planner agent
-enhanced_runner = InMemoryRunner(agent=technical_writer_agent, app_name="blog_writing_agent")
+enhanced_runner = InMemoryRunner(agent=final_formatter_agent, app_name="blog_writing_agent")
 
 
 async def test_query_planner_agent():

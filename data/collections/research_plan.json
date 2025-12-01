@@ -1,27 +1,27 @@
 {
-  "timestamp": "20251126_210557",
-  "invocation_id": "e-76c8f1ba-4875-4816-9060-0602db595717",
+  "timestamp": "20251201_223422",
+  "invocation_id": "e-885e0fd6-3f3d-4acf-95c0-0e9d1932fbaf",
   "agent_name": "query_planner",
   "output_key": "research_plan",
   "output": {
     "tasks": [
       {
-        "search_query": "AI agents in creative writing filetype:pdf site:.org",
+        "search_query": "AI agents creative writing applications filetype:pdf site:.edu",
         "source_pref": "academic",
         "freshness_window": "≤18 months",
-        "reasoning": "To understand the latest academic research on how AI agents are being used or developed for creative writing tasks, focusing on recent findings and methodologies."
+        "reasoning": "To understand the current academic research and theoretical frameworks of AI agents in creative writing, focusing on recent advancements and potential applications."
       },
       {
-        "search_query": "generative AI tools for writers filetype:pdf site:.org",
-        "source_pref": "industry",
-        "freshness_window": "≤18 months",
-        "reasoning": "To identify current industry-leading AI tools and platforms that assist creative writers, examining their features, capabilities, and reported impacts from a practical, user-focused perspective."
-      },
-      {
-        "search_query": "ethical considerations AI creative writing filetype:pdf site:.org",
+        "search_query": "AI tools for authors novel generation filetype:pdf site:.org",
         "source_pref": "mixed",
+        "freshness_window": "≤18 months",
+        "reasoning": "To identify practical AI tools and platforms currently being used or developed by organizations and researchers to assist with novel creation, gathering insights into their capabilities and limitations."
+      },
+      {
+        "search_query": "ethical considerations AI creative writing collaboration filetype:pdf site:.edu",
+        "source_pref": "academic",
         "freshness_window": "≤2 years",
-        "reasoning": "To explore the ethical implications and challenges surrounding the use of AI agents in creative writing, gathering insights from both academic and broader discussions to inform responsible content creation."
+        "reasoning": "To explore the ethical implications and challenges associated with AI agents in creative writing, such as authorship, originality, and copyright, from an academic perspective."
       }
     ]
   }
