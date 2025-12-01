@@ -1,315 +1,265 @@
 {
-  "timestamp": "20251201_223507",
-  "invocation_id": "e-885e0fd6-3f3d-4acf-95c0-0e9d1932fbaf",
+  "timestamp": "20251201_232115",
+  "invocation_id": "e-6f6a620c-826c-4ab0-86f1-99a72debcdaf",
   "agent_name": "article_planner",
   "output_key": "article_plan",
   "output": {
     "overview": {
-      "target_audience": "Writers, authors, novelists, and creative professionals interested in leveraging AI tools to enhance their writing process, as well as educators and students exploring AI in creative fields.",
-      "purpose": "To provide a comprehensive guide on using AI agents in creative writing, covering their capabilities, practical applications, ethical considerations, and strategies for responsible integration, while addressing identified content gaps.",
-      "key_message": "AI agents are powerful co-creative tools that can significantly augment human creativity in writing when used thoughtfully and ethically, but human oversight remains paramount.",
-      "value_proposition": "Readers will gain a clear understanding of how AI can assist in creative writing, learn practical techniques for integrating AI tools into their workflow, navigate ethical challenges, and discover strategies to maintain their unique authorial voice.",
-      "differentiation_strategy": "This article will differentiate itself by offering in-depth comparisons of AI tools, providing practical, step-by-step integration strategies, addressing the nuances of 'augmented creativity' and preserving the 'human voice', and offering actionable ethical frameworks, going beyond general discussions to provide concrete guidance."
+      "target_audience": "Creative writers, authors, poets, screenwriters, and content creators interested in leveraging AI to enhance their writing process.",
+      "purpose": "To provide a comprehensive understanding of how AI agents, particularly multi-agent systems (MAS), are transforming creative writing by acting as collaborative partners, and to explore the technical, practical, and ethical implications.",
+      "key_message": "AI agents, especially through multi-agent systems, are evolving into sophisticated collaborators that can augment human creativity, offering new possibilities for content generation and workflow efficiency, while also presenting unique ethical considerations.",
+      "value_proposition": "Readers will gain actionable insights into the latest advancements in AI for creative writing, understand the nuances of AI collaboration, learn about different MAS frameworks, and be better equipped to navigate the technical and ethical landscape of using AI in their creative endeavors.",
+      "differentiation_strategy": "This article will differentiate itself by providing a deep dive into Multi-Agent Systems (MAS) for creative writing, addressing specific gaps in understanding their architectures, agent roles, and comparative analyses. It will also offer practical guidance on integration and a focused look at MAS-specific ethical challenges, moving beyond general AI writing tool discussions."
     },
     "structure": [
       {
-        "title": "Introduction: The Evolving Landscape of AI in Creative Writing",
-        "description": "Set the stage by introducing AI agents as transformative tools for creative writers, briefly touching upon their growing capabilities and the dual nature of opportunities and challenges.",
-        "estimated_word_count": 400,
+        "title": "Introduction: The Evolving Role of AI in Creative Writing",
+        "description": "Set the stage by introducing AI's transition from a simple tool to a creative collaborator, highlighting the growing importance of AI agents in the writing process.",
+        "estimated_word_count": 300,
         "key_points": [
-          "Introduction to AI agents in the context of creative writing.",
-          "Brief overview of the current state of AI in literature and storytelling.",
-          "The central theme: AI as a co-creator, not a replacement.",
-          "Outline of the article's scope: capabilities, applications, ethics, and practical integration."
+          "Brief history of AI in writing (from grammar checkers to generative models).",
+          "The paradigm shift: AI as a collaborator, not just a tool.",
+          "Introduction to AI agents and their capabilities in creative contexts.",
+          "Thesis statement: This article will explore advanced AI collaboration through Multi-Agent Systems (MAS)."
         ],
         "evidence_needs": [
-          "Statistics on AI adoption in creative industries (if available).",
-          "General trends in AI development relevant to NLP and creative generation."
+          "Statistics on AI adoption in creative industries.",
+          "Examples of early AI writing assistance tools."
         ],
         "technical_depth": "low",
         "practical_examples": [
-          "Anecdotal examples of AI's presence in modern storytelling."
+          "Brief mention of tools like Grammarly vs. advanced agents."
         ],
         "conceptual_distinctions": [
-          "AI as a tool vs. AI as a replacement."
+          "AI as a tool vs. AI as a collaborator."
         ],
         "focus_areas": [
           "conceptual_distinctions"
         ]
       },
       {
-        "title": "Understanding the Core Technologies: How AI Writes",
-        "description": "Explain the fundamental AI technologies (NLP, ML, specific models) that power creative writing tools, focusing on what writers need to know without overwhelming technical detail.",
+        "title": "Understanding AI Agents as Collaborative Partners",
+        "description": "Explore the concept of AI agents working alongside human writers, detailing their functions and the benefits of human-AI co-creation.",
         "estimated_word_count": 500,
         "key_points": [
-          "Basics of Natural Language Processing (NLP) and Machine Learning (ML) in text generation.",
-          "Explanation of key AI architectures: Transformers, RNNs, LSTMs (simplified).",
-          "How AI models are trained on vast datasets.",
-          "The concept of prompt engineering and its importance.",
-          "Differentiating between rule-based systems and generative AI."
+          "Defining AI agents in the context of creative writing.",
+          "Tasks AI agents can perform: idea generation, drafting, editing, stylistic suggestions.",
+          "The synergy of human-AI co-creation: augmenting creativity and productivity.",
+          "Overcoming writer's block with AI assistance.",
+          "Maintaining creative control while using AI partners."
         ],
         "evidence_needs": [
-          "Simplified explanations of AI concepts.",
-          "Examples of how these technologies enable specific writing functions."
+          "Research findings on the impact of AI collaboration on writer productivity.",
+          "Anecdotal evidence or case studies of writers using AI agents."
         ],
         "technical_depth": "medium",
         "practical_examples": [
-          "Illustrative examples of how prompts influence AI output.",
-          "Simple analogies for complex AI concepts."
+          "Examples of prompts for idea generation, plot development, character backstory creation."
         ],
         "conceptual_distinctions": [
-          "Generative AI vs. other forms of AI.",
-          "The role of training data in AI output."
+          "Agent vs. a standalone LLM interface.",
+          "Autonomy of AI agents."
         ],
         "focus_areas": [
-          "technical_implementation",
-          "conceptual_distinctions"
+          "technical_implementation"
         ]
       },
       {
-        "title": "AI as Your Co-Pilot: Practical Applications Across the Writing Process",
-        "description": "Detail how AI agents can be used in specific stages of the creative writing process, providing concrete examples and strategies for each.",
+        "title": "Deep Dive into Multi-Agent Systems (MAS) for Creative Writing",
+        "description": "An in-depth look at MAS, explaining how multiple AI agents collaborate to enhance creative text generation, mimicking a 'professional writing room'.",
         "estimated_word_count": 800,
         "key_points": [
-          "Idea Generation & Brainstorming: Using AI to overcome writer's block and explore new concepts.",
-          "Character Development: Creating backstories, personality traits, and dialogue.",
-          "World-Building: Generating descriptions, lore, and setting details.",
-          "Outlining & Structuring: Developing plot points and narrative arcs.",
-          "Drafting Assistance: Generating sections, expanding ideas, and suggesting continuations.",
-          "Editing & Revision: Grammar, style, tone checks, and consistency improvements."
+          "What are Multi-Agent Systems (MAS)?",
+          "How MAS mimic a 'professional writing room' or 'team of writers'.",
+          "Addressing the gap: Specific MAS architectures (e.g., MASC, Agents' Room).",
+          "The concept of specialized agent roles (e.g., 'Idea Generator', 'Plot Doctor', 'Dialogue Coach').",
+          "Mechanisms for agent communication, coordination, and task allocation.",
+          "Iterative refinement and feedback loops within MAS."
         ],
         "evidence_needs": [
-          "Specific prompts and techniques for each writing stage.",
-          "Examples of AI-generated content for each application."
+          "Technical documentation or research papers on specific MAS architectures.",
+          "Diagrams illustrating MAS communication flow.",
+          "Examples of agent roles and their hypothetical contributions."
         ],
-        "technical_depth": "low",
+        "technical_depth": "high",
         "practical_examples": [
-          "Step-by-step tutorials for common tasks (e.g., generating character profiles, outlining a chapter).",
-          "Workflow examples demonstrating AI integration at different stages."
+          "Illustrative examples of agent interactions within a MAS framework for a story."
         ],
         "conceptual_distinctions": [
-          "AI for inspiration vs. AI for drafting.",
-          "AI for consistency vs. AI for variation."
+          "Single-agent vs. multi-agent systems.",
+          "Specialized roles vs. general-purpose AI."
         ],
         "focus_areas": [
           "technical_implementation"
         ]
       },
       {
-        "title": "Tool Showdown: Comparing Popular AI Writing Assistants",
-        "description": "Provide an in-depth comparison of leading AI writing tools (e.g., ChatGPT, Sudowrite, Jasper AI, NovelAI), analyzing their strengths, weaknesses, ideal use cases, and pricing for creative writers.",
-        "estimated_word_count": 700,
-        "key_points": [
-          "Overview of key AI writing tools relevant to creative writers.",
-          "Feature comparison: capabilities, limitations, user interface.",
-          "Target audience and best use cases for each tool (e.g., fiction, poetry, screenwriting).",
-          "Pricing models and accessibility.",
-          "User experience and learning curve."
-        ],
-        "evidence_needs": [
-          "Direct comparisons of tool features and performance.",
-          "Pricing information and subscription tiers.",
-          "User reviews or expert assessments."
-        ],
-        "technical_depth": "medium",
-        "practical_examples": [
-          "Side-by-side examples of output from different tools for the same prompt.",
-          "Scenarios where one tool might be preferable over another."
-        ],
-        "conceptual_distinctions": [
-          "General-purpose chatbots vs. specialized writing tools.",
-          "Subscription models vs. pay-as-you-go."
-        ],
-        "focus_areas": [
-          "technical_implementation"
-        ]
-      },
-      {
-        "title": "The 'Human Voice' in the Age of AI: Preserving Authenticity",
-        "description": "Explore the concern that AI may diminish the unique human voice in writing and provide strategies for writers to maintain their authentic style and perspective.",
+        "title": "Comparative Review of MAS Frameworks and Evaluation Metrics",
+        "description": "Analyze and compare different MAS frameworks used in creative writing, and discuss the metrics used to evaluate their performance.",
         "estimated_word_count": 600,
         "key_points": [
-          "Defining the 'human voice' in creative writing.",
-          "The risks of AI homogenization and loss of authenticity.",
-          "Strategies for leveraging AI while preserving unique style (e.g., editing AI output, using AI for specific elements).",
-          "The role of intention and conscious AI integration.",
-          "Developing a personal manifesto for AI use in writing."
+          "Comparative analysis: Strengths and weaknesses of frameworks like MASC and Agents' Room.",
+          "Use cases for different MAS frameworks (e.g., novel writing, scriptwriting, poetry).",
+          "Addressing the gap: Evaluation metrics for AI-generated creative text (qualitative and quantitative).",
+          "Measuring creativity, coherence, and relevance in MAS outputs.",
+          "Challenges in evaluating subjective creative quality."
         ],
         "evidence_needs": [
-          "Insights from authors who prioritize authenticity while using AI.",
-          "Theoretical frameworks on authorial voice.",
-          "Examples of subtle AI influence and how to counteract it."
-        ],
-        "technical_depth": "low",
-        "practical_examples": [
-          "Editing exercises: transforming generic AI text into a distinct voice.",
-          "Case studies of authors maintaining their voice with AI assistance."
-        ],
-        "conceptual_distinctions": [
-          "AI as an echo vs. AI as a muse.",
-          "Authenticity as a conscious choice."
-        ],
-        "focus_areas": [
-          "conceptual_distinctions"
-        ]
-      },
-      {
-        "title": "Navigating the Ethical Maze: Authorship, Copyright, and Bias",
-        "description": "Address the critical ethical considerations surrounding AI in creative writing, offering practical guidance and frameworks for responsible use.",
-        "estimated_word_count": 700,
-        "key_points": [
-          "Authorship and Ownership: Who owns AI-generated or AI-assisted work?",
-          "Copyright challenges and evolving legal landscapes.",
-          "Plagiarism and originality concerns: identifying and avoiding AI-generated text that mimics existing works.",
-          "Bias in AI: Recognizing and mitigating cultural insensitivity, stereotyping, and misrepresentation.",
-          "Transparency: When and how to disclose AI use.",
-          "Developing personal ethical guidelines for AI in writing."
-        ],
-        "evidence_needs": [
-          "Current legal discussions and proposed frameworks for AI copyright.",
-          "Examples of bias in AI-generated text.",
-          "Best practices for disclosure and attribution.",
-          "Case law or notable legal cases (if any)."
+          "Comparative charts or tables of MAS frameworks.",
+          "Research papers detailing evaluation methodologies and results.",
+          "Examples of MAS outputs evaluated against specific metrics."
         ],
         "technical_depth": "medium",
         "practical_examples": [
-          "Ethical checklists for writers.",
-          "Scenarios illustrating copyright dilemmas.",
-          "Examples of biased AI output and how to correct them."
+          "Hypothetical scenario comparing how two different MAS might approach the same writing task."
         ],
         "conceptual_distinctions": [
-          "AI-assisted vs. AI-generated content.",
-          "Ethical use vs. legal requirements.",
-          "Mitigation vs. eradication of bias."
+          "Different evaluation metrics (e.g., perplexity, human judgment scores)."
         ],
         "focus_areas": [
-          "ethical_considerations",
-          "conceptual_distinctions"
+          "evidence_and_metrics",
+          "technical_implementation"
         ]
       },
       {
-        "title": "AI in the Classroom: Educating the Next Generation of Writers",
-        "description": "Discuss the impact of AI on creative writing education, focusing on pedagogical approaches for effective and ethical student use.",
+        "title": "Integrating AI Agents and MAS into Your Writing Workflow",
+        "description": "Provide practical guidance on how writers can effectively integrate AI agents and MAS into their existing creative processes.",
         "estimated_word_count": 500,
         "key_points": [
-          "The potential of AI to enhance student creativity and learning.",
-          "Challenges for educators: assessment, academic integrity.",
-          "Effective pedagogical strategies for teaching AI tools.",
-          "Developing critical thinking skills alongside AI use.",
-          "Curriculum ideas and sample lesson plans.",
-          "Fostering responsible AI use from an early stage."
+          "Addressing the gap: Practical steps for integrating AI into workflows.",
+          "Best practices for prompt engineering with collaborative agents.",
+          "Strategies for maintaining creative control and ownership.",
+          "User experience considerations: Seamless integration vs. disruptive technology.",
+          "Tools and platforms that facilitate MAS integration (if available/emerging).",
+          "Tips for iterative collaboration with AI agents."
         ],
         "evidence_needs": [
-          "Research on AI in education and its impact on creativity.",
-          "Examples of successful AI integration in writing courses.",
-          "Best practices for AI-related assignments and assessments."
+          "Case studies or testimonials from writers using integrated AI workflows.",
+          "Workflow diagrams showing AI integration points.",
+          "Examples of effective prompt structures for collaborative agents."
         ],
         "technical_depth": "low",
         "practical_examples": [
-          "Sample prompts for educational exercises.",
-          "Frameworks for grading AI-assisted work.",
-          "Activity ideas for classroom discussions on AI ethics."
+          "Step-by-step guide for using a hypothetical MAS for a short story.",
+          "Example of refining AI output through iterative prompting."
         ],
         "conceptual_distinctions": [
-          "AI as a learning aid vs. AI as a shortcut.",
-          "Teaching *with* AI vs. teaching *about* AI."
+          "Workflow integration strategies.",
+          "User control vs. AI autonomy."
         ],
         "focus_areas": [
-          "technical_implementation",
+          "technical_implementation"
+        ]
+      },
+      {
+        "title": "Ethical Considerations and Authorship in MAS Creative Writing",
+        "description": "Examine the unique ethical challenges and questions of authorship that arise when multiple AI agents collaborate on creative works.",
+        "estimated_word_count": 600,
+        "key_points": [
+          "Addressing the gap: MAS-specific ethical concerns.",
+          "Authorship and intellectual property in AI-collaborative writing.",
+          "Transparency and disclosure: When and how to inform readers about AI involvement.",
+          "Bias amplification in multi-agent systems.",
+          "The impact on the perceived value of human creativity.",
+          "Developing personal ethical frameworks for AI use in writing.",
+          "Legal ambiguities and the evolving landscape of copyright."
+        ],
+        "evidence_needs": [
+          "Discussions on copyright law related to AI-generated content.",
+          "Ethical guidelines or frameworks proposed by researchers.",
+          "Examples of ethical dilemmas in AI-assisted creative works."
+        ],
+        "technical_depth": "medium",
+        "practical_examples": [
+          "Scenarios presenting ethical dilemmas for writers using MAS.",
+          "Examples of disclosure statements."
+        ],
+        "conceptual_distinctions": [
+          "Authorship vs. contribution.",
+          "Transparency vs. artistic integrity."
+        ],
+        "focus_areas": [
           "ethical_considerations"
         ]
       },
       {
-        "title": "The Future of Storytelling: AI and Human Collaboration",
-        "description": "Conclude by looking ahead at the future trajectory of AI in creative writing, emphasizing the enduring importance of human-AI collaboration and the ongoing evolution of the craft.",
-        "estimated_word_count": 400,
+        "title": "The Future of AI Agents in Creative Writing",
+        "description": "Conclude by looking ahead at the potential future developments and implications of AI agents and MAS in the creative writing landscape.",
+        "estimated_word_count": 300,
         "key_points": [
-          "Emerging trends in AI for creative writing (e.g., multi-agent systems, personalized AI assistants).",
-          "The potential for AI to unlock new forms of narrative and interactive storytelling.",
-          "Reiteration of the symbiotic relationship between human creativity and AI.",
-          "The ongoing dialogue needed regarding ethics and best practices.",
-          "Final thoughts on embracing AI as a tool for expanding creative horizons."
+          "Predictions for more sophisticated AI collaboration.",
+          "Potential for AI to generate entirely new literary forms or genres.",
+          "The evolving relationship between human writers and AI.",
+          "Ongoing challenges and research directions.",
+          "The enduring importance of human intent and creativity."
         ],
         "evidence_needs": [
-          "Predictions from AI researchers and futurists.",
-          "Examples of cutting-edge AI applications in storytelling."
+          "Expert opinions on future AI trends in creative fields.",
+          "Roadmaps for AI development in natural language generation."
         ],
         "technical_depth": "low",
         "practical_examples": [
-          "Visionary examples of future AI-human creative partnerships."
+          "Speculative examples of future AI writing tools or collaborations."
         ],
         "conceptual_distinctions": [
-          "Predictive evolution of AI capabilities.",
-          "Human agency in shaping AI's future role."
+          "Human creativity vs. AI capabilities.",
+          "Tools vs. autonomous creative entities."
         ],
-        "focus_areas": [
-          "conceptual_distinctions"
-        ]
+        "focus_areas": []
       }
     ],
     "focus_areas_mapping": {
       "technical_implementation": [
-        "Understanding the Core Technologies: How AI Writes",
-        "AI as Your Co-Pilot: Practical Applications Across the Writing Process",
-        "Tool Showdown: Comparing Popular AI Writing Assistants",
-        "AI in the Classroom: Educating the Next Generation of Writers"
+        "Understanding AI Agents as Collaborative Partners",
+        "Deep Dive into Multi-Agent Systems (MAS) for Creative Writing",
+        "Comparative Review of MAS Frameworks and Evaluation Metrics",
+        "Integrating AI Agents and MAS into Your Writing Workflow"
       ],
       "evidence_and_metrics": [
-        "Introduction: The Evolving Landscape of AI in Creative Writing",
-        "Understanding the Core Technologies: How AI Writes",
-        "AI as Your Co-Pilot: Practical Applications Across the Writing Process",
-        "Tool Showdown: Comparing Popular AI Writing Assistants",
-        "The 'Human Voice' in the Age of AI: Preserving Authenticity",
-        "Navigating the Ethical Maze: Authorship, Copyright, and Bias",
-        "AI in the Classroom: Educating the Next Generation of Writers",
-        "The Future of Storytelling: AI and Human Collaboration"
+        "Comparative Review of MAS Frameworks and Evaluation Metrics"
       ],
       "conceptual_distinctions": [
-        "Introduction: The Evolving Landscape of AI in Creative Writing",
-        "Understanding the Core Technologies: How AI Writes",
-        "AI as Your Co-Pilot: Practical Applications Across the Writing Process",
-        "Tool Showdown: Comparing Popular AI Writing Assistants",
-        "The 'Human Voice' in the Age of AI: Preserving Authenticity",
-        "Navigating the Ethical Maze: Authorship, Copyright, and Bias",
-        "AI in the Classroom: Educating the Next Generation of Writers",
-        "The Future of Storytelling: AI and Human Collaboration"
+        "Introduction: The Evolving Role of AI in Creative Writing",
+        "Understanding AI Agents as Collaborative Partners",
+        "Deep Dive into Multi-Agent Systems (MAS) for Creative Writing",
+        "Integrating AI Agents and MAS into Your Writing Workflow",
+        "The Future of AI Agents in Creative Writing"
       ],
       "ethical_considerations": [
-        "Navigating the Ethical Maze: Authorship, Copyright, and Bias",
-        "AI in the Classroom: Educating the Next Generation of Writers"
+        "Ethical Considerations and Authorship in MAS Creative Writing"
       ]
     },
     "visual_opportunities": [
       {
         "type": "diagram",
-        "description": "A flowchart illustrating the AI-assisted writing process, showing decision points for human intervention and AI input at different stages.",
-        "suggested_location": "AI as Your Co-Pilot: Practical Applications Across the Writing Process",
-        "purpose": "To visually represent how AI can be integrated into a writer's workflow."
-      },
-      {
-        "type": "infographic",
-        "description": "A comparison table of popular AI writing tools, highlighting key features, pricing, strengths, and weaknesses.",
-        "suggested_location": "Tool Showdown: Comparing Popular AI Writing Assistants",
-        "purpose": "To provide a quick, scannable overview for readers choosing between different AI tools."
-      },
-      {
-        "type": "infographic",
-        "description": "A visual summary of ethical considerations, including key questions related to authorship, copyright, bias, and transparency.",
-        "suggested_location": "Navigating the Ethical Maze: Authorship, Copyright, and Bias",
-        "purpose": "To distill complex ethical issues into an easily digestible format."
+        "description": "A diagram illustrating the concept of a Multi-Agent System (MAS) for creative writing, showing specialized agents communicating and collaborating.",
+        "suggested_location": "Deep Dive into Multi-Agent Systems (MAS) for Creative Writing",
+        "purpose": "To visually explain the complex architecture and interaction of MAS."
       },
       {
         "type": "process_flow",
-        "description": "A visual representation of pedagogical approaches for teaching AI in creative writing classrooms.",
-        "suggested_location": "AI in the Classroom: Educating the Next Generation of Writers",
-        "purpose": "To illustrate different methods for integrating AI education effectively."
+        "description": "A process flow showing how a writer might integrate AI agents and MAS into their typical writing workflow.",
+        "suggested_location": "Integrating AI Agents and MAS into Your Writing Workflow",
+        "purpose": "To provide a clear, step-by-step visual guide for practical application."
+      },
+      {
+        "type": "infographic",
+        "description": "An infographic comparing different MAS frameworks (e.g., MASC, Agents' Room) based on features, strengths, weaknesses, and use cases.",
+        "suggested_location": "Comparative Review of MAS Frameworks and Evaluation Metrics",
+        "purpose": "To offer a concise, visual summary of comparative analysis."
+      },
+      {
+        "type": "data_visualization",
+        "description": "A visualization representing common evaluation metrics for AI-generated creative text (e.g., scores for coherence, creativity, human-likeness).",
+        "suggested_location": "Comparative Review of MAS Frameworks and Evaluation Metrics",
+        "purpose": "To illustrate the types of data and metrics used to assess AI writing quality."
       }
     ],
     "tone_and_style": {
-      "professional_tone": "Maintain a knowledgeable, authoritative, yet accessible tone. Avoid overly technical jargon unless explained clearly. Embrace a forward-thinking perspective while remaining grounded in practical realities.",
-      "technical_accessibility_balance": "Explain technical concepts (like NLP, Transformers) with clear analogies and simplified language suitable for writers who are not AI experts. Balance technical depth with practical relevance.",
-      "critical_thinking": "Encourage critical engagement with AI tools. Present a balanced view, acknowledging both the significant benefits and the potential drawbacks and ethical challenges. Avoid hyperbole or techno-optimism/pessimism.",
-      "evidence_based_approach": "Support claims with references to research, expert opinions, and practical examples where possible. Where quantitative data is lacking (as identified in the gap analysis), acknowledge this and focus on qualitative insights and reasoned arguments."
+      "professional_tone": "Maintain a knowledgeable, objective, and forward-looking tone. Avoid overly casual language while remaining engaging.",
+      "technical_accessibility_balance": "Explain complex technical concepts (like MAS architectures) in an accessible way, using analogies and clear definitions. Provide deeper dives for those interested, but ensure the core concepts are understandable to a broad audience of writers.",
+      "critical_thinking": "Present a balanced perspective, acknowledging both the benefits and challenges/risks of AI in creative writing. Encourage critical engagement with the technology rather than blind adoption.",
+      "evidence_based_approach": "Support claims with references to research, academic papers, and examples where possible. Clearly distinguish between established facts, research findings, and future speculation."
     }
   }
 }

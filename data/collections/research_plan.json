@@ -1,27 +1,33 @@
 {
-  "timestamp": "20251201_223422",
-  "invocation_id": "e-885e0fd6-3f3d-4acf-95c0-0e9d1932fbaf",
+  "timestamp": "20251201_232008",
+  "invocation_id": "e-6f6a620c-826c-4ab0-86f1-99a72debcdaf",
   "agent_name": "query_planner",
   "output_key": "research_plan",
   "output": {
     "tasks": [
       {
-        "search_query": "AI agents creative writing applications filetype:pdf site:.edu",
+        "search_query": "\"AI agents\" \"creative writing\" \"architectures\" filetype:pdf site:.edu",
         "source_pref": "academic",
         "freshness_window": "≤18 months",
-        "reasoning": "To understand the current academic research and theoretical frameworks of AI agents in creative writing, focusing on recent advancements and potential applications."
+        "reasoning": "To address the gap regarding specific AI agent architectures, this query targets academic papers that detail the technical design and implementation of AI systems used in creative writing, aiming for in-depth technical understanding."
       },
       {
-        "search_query": "AI tools for authors novel generation filetype:pdf site:.org",
+        "search_query": "\"AI tools\" \"creative writing\" \"feature comparison\" filetype:pdf site:.org",
         "source_pref": "mixed",
         "freshness_window": "≤18 months",
-        "reasoning": "To identify practical AI tools and platforms currently being used or developed by organizations and researchers to assist with novel creation, gathering insights into their capabilities and limitations."
+        "reasoning": "To fill the gap on granular tool capabilities, this query seeks comparative analyses or reviews of AI tools for creative writing, focusing on specific features and their application across different writing stages. The 'mixed' source preference allows for both academic evaluations and industry-focused comparisons."
       },
       {
-        "search_query": "ethical considerations AI creative writing collaboration filetype:pdf site:.edu",
+        "search_query": "\"AI generated writing\" \"quality comparison\" \"case studies\" filetype:pdf site:.org",
         "source_pref": "academic",
-        "freshness_window": "≤2 years",
-        "reasoning": "To explore the ethical implications and challenges associated with AI agents in creative writing, such as authorship, originality, and copyright, from an academic perspective."
+        "freshness_window": "≤18 months",
+        "reasoning": "To explore the qualitative differences between AI and human writing, this query targets academic case studies and comparative analyses that evaluate the output of AI in creative writing, addressing the gap concerning the actual quality and insightfulness of AI-generated content."
+      },
+      {
+        "search_query": "\"ethical frameworks\" \"creative writers\" \"AI usage\" filetype:pdf site:.org",
+        "source_pref": "academic",
+        "freshness_window": "≤18 months",
+        "reasoning": "To address the need for practical ethical guidance, this query focuses on academic research that proposes or discusses ethical frameworks and best practices specifically for creative writers utilizing AI tools, aiming to provide actionable insights."
       }
     ]
   }

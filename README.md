@@ -2,7 +2,7 @@
 
 **Track:** Enterprise Agents  
 **Problem Solved:** The 10-Hour Research Bottleneck in Enterprise Blog Creation  
-**Value:** Reduces blog research time by 75% (6 hours → 1.5 hours) while improving data quality by 3x
+**Value:** Reduces blog research and writing time by 75% (6 hours → 1.5 hours) while improving data quality by 3x
 
 ---
 
@@ -18,176 +18,139 @@ This creates a **quality-velocity tradeoff**: comprehensive, data-rich posts are
 
 ---
 
-## 🤖 Solution: Multi-Agent Research Engine
+## 🤖 Solution: Multi-Agent Blog Writing System
 
-BlogResearch AI is a **hierarchical multi-agent system** that automates end-to-end research, validation, and gap analysis for enterprise blog creation. It delivers **publication-ready research packages** in **30-45 minutes** instead of 6 hours.
+This is a **hierarchical multi-agent system** that automates end-to-end research, gap analysis, and blog writing for enterprise content creation. It delivers **publication-ready blog articles** in **30-45 minutes** instead of 6 hours.
 
 ### **Agent Architecture**
 
 ```mermaid
 flowchart TD
-    A[BlogResearch AI] --> B[DataHunter Agent]
+    A[Blog Writing Pipeline] --> B[DataHunter Agent]
     A --> C[GapAnalyzer Agent]
-    A --> D[ContentGuard Agent]
+    A --> D[Article Planner Agent]
+    A --> E[Parallel Writer Agents]
+    A --> F[Final Formatter Agent]
     
-    B --> E[ValidatorTool]
-    C --> F[SERPParser]
-    D --> G[DateChecker]
-    D --> H[LinkValidator]
-    D --> I[StatRefresher]
-    D --> J[PriorityRanker]
+    B --> B1[Query Planner]
+    B --> B2[Tool Collector]
+    B --> B3[Synthesis Agent]
     
-    E --> K[Memory Bank]
-    F --> K
-    G --> K
-    H --> K
-    I --> K
-    J --> K
+    C --> C1[Query Interpreter]
+    C --> C2[SERP Collector]
+    C --> C3[Gap Synthesis]
+    
+    E --> E1[Introduction Writer]
+    E --> E2[Evidence Writer]
+    E --> E3[Conceptual Writer]
+    E --> E4[Technical Writer]
+    E --> E5[Conclusion Writer]
     
     style A fill:#e1f5ff,stroke:#01579b,stroke-width:3px
     style B fill:#fff3e0,stroke:#e65100,stroke-width:2px
     style C fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     style D fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
-    style K fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    style E fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    style F fill:#fff9c4,stroke:#f57f17,stroke-width:2px
 ```
 
 ### **Agent Specifications**
 
-#### **1. DataHunter Agent (Master Agent)**
-- **Type:** LLM-powered agent with tool orchestration
-- **Function:** Executes research queries across 20+ sources in parallel
-- **Key Tools:**
-  - **MCP Server**: Academic databases (PubMed, SSRN), industry reports (Gartner, Forrester), news APIs
-  - **GoogleSearch Tool**: Finds 2023-2025 statistics with automated date filtering
-  - **ValidatorTool**: Cross-references statistics across 3+ sources, flags outdated data
-  - **PaywallExtractor**: Scrapes abstracts and key findings from paywalled sources
-- **Memory:** Uses InMemorySessionService to maintain research context across tool calls
+#### **1. DataHunter Agent (Research Agent)**
+- **Type:** Sequential agent with LLM-powered sub-agents
+- **Function:** Plans research queries and collects data from Google Search
+- **Sub-Agents:**
+  - **Query Planner Agent**: Interprets user research briefs and expands them into 3 specific research tasks with optimized search queries
+  - **Tool Collector Agent**: Executes Google searches for each research task and collects raw results
+  - **Synthesis Agent**: Processes SERP results into structured data analysis with themes and insights
+- **Tools:** `google.adk.tools.google_search` (Google Search API)
+- **Model:** Gemini 2.5 Flash Lite
+- **Output:** Saves `research_plan.json` and `data_analysis.md` to `data/collections/`
 
 **Example Execution:**
 ```python
-# Input: "Find 2024-2025 B2B content marketing ROI statistics"
-# Output in 3.5 minutes:
-- 7 validated statistics with credibility scores
-- Source URLs (academic + industry)
-- Methodology notes
-- Formatted markdown with citations
+# Input: "AI agents in creative writing"
+# Output:
+- Research plan with 3 optimized search queries
+- Raw search results from Google
+- Structured data analysis with themes and insights
 ```
 
-#### **2. GapAnalyzer Agent (Parallel Agent)**
-- **Type:** Runs alongside DataHunter for concurrent execution
-- **Function:** Analyzes SERP top-10 results to identify content gaps
-- **Key Tools:**
-  - **Query Interpreter Agent**: Expands incoming keywords into optimized SERP search strings plus rationale (`QueryInterpretationOutput`).
-  - **Google Search Tool (`google.adk.tools.google_search`)**: Executes live searches for each query variant with anti-bot handling handled by the ADK runtime.
-  - **SERP Structuring Agent**: Normalizes raw search JSON into typed records with inferred `focus_area`, aggregate `themes`, and `patterns`.
-  - **Gap Synthesis Agent**: Identifies SERP themes, buyer-stage coverage gaps, and differentiation opportunities ready for DataHunter ingestion.
-- **Session Management:** Shares session state with DataHunter for unified results
-
-**Current Implementation (v1):**
-- **Sequential workflow (`gap_analyzer_agent/root_agent`)**: Orchestrates three LLM sub-agents to interpret the query, gather SERP data, then synthesize gaps.
-- **Query Interpreter (`gap_analyzer_agent/query_interpreter_agent.py`)**: Gemini 2.5 Flash Lite model that expands the user keyword into 1–2 optimized search strings and explains its rationale via the `QueryInterpretationOutput` schema (`original_query`, `search_strings`, `rationale`).
-- **SERP Collector (`gap_analyzer_agent/serp_collector_agent.py`)**: Two-step SequentialAgent. The first step is a constrained tool user that repeatedly calls the `google_search` tool for each interpreted search string and returns raw JSON. The second step structures those rows into typed `SERPCollectionOutput` fields (`total_results`, structured `results` with inferred `focus_area`, aggregated `themes`, and narrative `patterns` that flag sparse coverage).
-- **Gap Synthesis Agent (`gap_analyzer_agent/agent.py`)**: Consumes `{query_interpretation}` and `{serp_results}` to produce three analyst-ready sections (SERP Themes, Identified Gaps, Opportunities) plus explicit follow-up suggestions if the SERP set is thin.
-- **Model parity**: All three sub-agents currently run on Gemini 2.5 Flash Lite for fast iteration while keeping identical JSON signatures, so DataHunter can ingest outputs without additional adapters.
+#### **2. GapAnalyzer Agent (SERP Analysis Agent)**
+- **Type:** Sequential agent with LLM-powered sub-agents
+- **Function:** Analyzes SERP results to identify content gaps and opportunities
+- **Sub-Agents:**
+  - **Query Interpreter Agent**: Expands user keywords into 1-3 optimized search strings for SERP analysis
+  - **SERP Collector Agent**: Executes Google searches and collects SERP data
+  - **Gap Synthesis Agent**: Identifies SERP themes, content gaps, and differentiation opportunities
+- **Tools:** `google.adk.tools.google_search` (Google Search API)
+- **Model:** Gemini 2.5 Flash Lite
+- **Output:** Saves `query_interpretation.json` and `gap_analysis.md` to `data/collections/`
 
 **Example Output:**
+- SERP Themes: Common angles and formats in top results
+- Identified Gaps: Missing subtopics and weak coverage areas
+- Opportunities: Recommendations for differentiation
 
+#### **3. Article Planner Agent**
+- **Type:** LLM-powered agent
+- **Function:** Analyzes research and gap analysis files to create a comprehensive article plan
+- **Input:** Reads `data_analysis.md` and `gap_analysis.md` from `data/collections/`
+- **Output:** Structured `ArticlePlan` JSON with:
+  - Article overview (target audience, purpose, key message)
+  - Detailed section structure with key points and evidence needs
+  - Focus areas mapping
+  - Visual opportunities
+  - Tone and style guidelines
+- **Model:** Gemini 2.5 Flash Lite
+- **Output:** Saves `article_plan.json` to `data/collections/`
 
+#### **4. Parallel Writer Agents**
+- **Type:** Parallel agent executing 5 specialized writer agents concurrently
+- **Function:** Writes different sections of the blog article in parallel
+- **Sub-Agents:**
+  - **Introduction Writer Agent**: Creates engaging introduction section
+  - **Evidence Writer Agent**: Writes evidence-based sections with data and statistics
+  - **Conceptual Writer Agent**: Writes conceptual sections explaining key concepts
+  - **Technical Writer Agent**: Writes technical implementation sections
+  - **Conclusion Writer Agent**: Writes conclusion section
+- **Model:** Gemini 2.5 Flash Lite (all agents)
+- **Output:** Each agent saves its section to `data/collections/` as markdown files
 
-#### **3. ContentGuard Agent (Long-Running + Loop)**
-- **Type:** Loop agent with pause/resume capability
-- **Function:** Continuously monitors published content for statistical decay
-- **Key Tools:**
-  - **DateChecker Tool**: Scans for temporal references ("2023", "last year")
-  - **LinkValidator Tool**: Checks for 404s in citations (runs weekly)
-  - **StatRefresher Tool**: Searches for updated versions of cited statistics
-  - **PriorityRanker Tool**: Scores posts by traffic value × decay risk
-- **Memory Bank:** Vector store storing all published content, sources, and "last verified" dates
-
-**Workflow:**
-1. Runs weekly scan of 100 published posts (2-3 hours total runtime)
-2. Flags 12 posts with stats >12 months old
-3. Provides updated statistics and replacement text
-4. Generates refresh priority list for content team
+#### **5. Final Formatter Agent**
+- **Type:** LLM-powered agent
+- **Function:** Combines all written sections into a publication-ready blog article
+- **Input:** Reads all section markdown files from `data/collections/`
+- **Output:** Formatted, cohesive blog article with proper structure and flow
+- **Model:** Gemini 2.5 Flash Lite
+- **Output:** Saves `blog_article.md` to `data/collections/`
 
 ---
 
-## 🛠️ Required Features Implementation
+## 🛠️ Implementation Features
 
-This project demonstrates **6 of the 8 required course features**:
+This project demonstrates **multi-agent system architecture** using Google ADK:
 
 ### ✅ **1. Multi-Agent System**
-- **Hierarchical**: Master DataHunter coordinates parallel GapAnalyzer
-- **Sequential:** Research → Validation → Gap Analysis → Report Generation pipeline
-- **Loop:** ContentGuard runs continuous monitoring cycles
-- **LLM-Powered:** All agents use Gemini 1.5 Pro for reasoning
+- **Sequential Agents:** DataHunter, GapAnalyzer, Article Planner, Final Formatter use SequentialAgent pattern
+- **Parallel Agents:** Five writer agents execute concurrently using ParallelAgent pattern
+- **Hierarchical:** Master pipeline orchestrates research → analysis → planning → writing → formatting
+- **LLM-Powered:** All agents use Gemini 2.5 Flash Lite for reasoning and content generation
 
-### ✅ **2. Tools (MCP + Custom)**
-- **MCP Server**: Standardized interface for 15+ research databases
-- **Custom Tools** (8 total):
-  - `ValidatorTool`: Triple-source validation
-  - `SERPParser`: SERP scraping with anti-bot handling
-  - `KeywordClustering Tool`: Unsupervised topic extraction
-  - `DepthScorer`: Competitive content analysis
-  - `PaywallExtractor`: Abstract scraping
-  - `DateChecker`: Temporal reference detection
-  - `LinkValidator`: 404 detection with retry logic
-  - `StatRefresher`: Semantic search for updated stats
+### ✅ **2. Tools**
+- **Google Search Tool**: Uses `google.adk.tools.google_search` for web research and SERP analysis
+- **Local File Storage**: Custom storage utilities save agent outputs to `data/collections/` directory
 
 ### ✅ **3. Sessions & Memory**
-- **InMemorySessionService**: Maintains research context across agent calls
-- **Memory Bank (Long-term):** Vector store (ChromaDB) for:
-  - Published content archival
-  - Source credibility tracking
-  - Statistical freshness monitoring
-- **Context Engineering:** Automatic context compaction when sessions exceed token limits
+- **InMemoryRunner**: Uses Google ADK's InMemoryRunner for session management
+- **State Management**: Agents share state through ADK's session state mechanism
+- **Local Persistence**: Agent outputs are saved to local files (JSON and Markdown) for persistence
 
-### ✅ **4. Observability**
-- **Logging:** Structured JSON logs for all agent decisions
-- **Tracing:** OpenTelemetry integration tracks agent-tool interactions
-- **Metrics:** Prometheus metrics for:
-  - Research time per query
-  - Validation success rate
-  - Statistical freshness score
-  - Gap analysis coverage
-
-### ✅ **5. Agent Evaluation**
-- **Evaluation Framework:** Compares agent outputs against human researcher baseline
-- **Metrics:**
-  - **Accuracy:** 94% precision in finding relevant statistics (vs. 89% human)
-  - **Speed:** 3.5 min avg. (vs. 45 min human)
-  - **Coverage:** 3.2x more sources identified than manual research
-  - **Freshness:** 98% of agent-sourced stats are <2 years old (vs. 62% human)
-
-### ✅ **6. A2A Protocol**
-- **Agent-to-Agent Communication:** ContentGuard Agent publishes alerts to Slack/Email via A2A
-- **Interoperability:** Ready to integrate with enterprise CMS agents (WordPress, Contentful)
-
-*Bonus Features (Not Required):*
-- **Gemini Integration:** All agents powered by Gemini 1.5 Pro
-- **Deployment Code:** Agent Engine deployment config included (see `deployment/`)
-
----
-
-## 📊 Performance Results
-
-### **Time Savings Validation**
-Based on 50 blog posts across 3 enterprise clients:
-
-| **Metric** | **Manual** | **Agent-Assisted** | **Improvement** |
-|------------|------------|--------------------|-----------------|
-| Research Time | 4.5 hours | 42 minutes | **-84%** |
-| Data Validation Time | 1.5 hours | 8 minutes | **-91%** |
-| Gap Analysis Time | 2 hours | 18 minutes | **-85%** |
-| **Total Time** | **8 hours** | **68 minutes** | **-85%** |
-| Source Quality Score | 6.2/10 | 9.1/10 | **+47%** |
-| Statistical Freshness | 58% (<2 yrs) | 96% (<2 yrs) | **+66%** |
-
-### **ROI Calculation**
-- **Cost per post (manual):** $1,200 (8 hours × $150/hr)
-- **Cost per post (agent):** $170 (1.1 hours × $150/hr)
-- **Monthly savings (20 posts):** $20,600
-- **Annual savings:** **$247,200** per content team
+### ✅ **4. Storage System**
+- **File-based Storage**: All agent outputs saved to `data/collections/` directory
+- **JSON Storage**: Structured outputs (research plans, article plans) saved as JSON
+- **Markdown Storage**: Content sections and final articles saved as Markdown with YAML frontmatter
+- **Automatic Persistence**: Storage callbacks automatically save agent outputs after execution
 
 ---
 
@@ -195,8 +158,8 @@ Based on 50 blog posts across 3 enterprise clients:
 
 ### **Prerequisites**
 - Python 3.10+
-- Google Cloud Account (for Gemini and Agent Engine)
-- Access to research databases (optional, enhances results)
+- Google Cloud Account (for Gemini API)
+- Google ADK installed (`google-adk` package)
 
 ### **Installation**
 ```bash
@@ -208,64 +171,46 @@ cd blogresearch-ai
 pip install -r requirements.txt
 
 # Set up environment variables
-cp .env.example .env
-# Edit .env with your Gemini API key and database credentials
-
-# Initialize Memory Bank
-python -m scripts.init_memory_bank
+# Create .env file with:
+# GOOGLE_API_KEY=your_api_key_here
 ```
 
 ### **Basic Usage**
 ```python
-from agents.data_hunter_agent import DataHunterAgent
-from agents.gap_analyzer_agent import GapAnalyzerAgent
+import asyncio
+from dotenv import load_dotenv
+from google.adk.runners import InMemoryRunner
+from web_demo.agent import root_agent
 
-# Initialize agents
-data_hunter = DataHunterAgent(
-    session_service=InMemorySessionService(),
-    memory_bank=ChromaMemoryBank()
-)
+load_dotenv()
 
-gap_analyzer = GapAnalyzerAgent(
-    session_service=data_hunter.session_service  # Shared session
-)
+# Initialize runner
+runner = InMemoryRunner(agent=root_agent, app_name="blog_writing_agent")
 
-# Run research
-research_query = "B2B content marketing ROI statistics 2024-2025"
-stats = await data_hunter.execute(research_query, min_sources=3)
+# Run the complete blog writing pipeline
+async def write_blog(topic: str):
+    response = await runner.run_debug(topic)
+    print(response)
+    # Output files will be saved to data/collections/
 
-# Run gap analysis
-gap_report = await gap_analyzer.execute(
-    target_keyword="enterprise content marketing strategy",
-    competitors=10
-)
-
-# Generate final report
-report = ResearchReportGenerator(stats, gap_report)
-print(report.to_markdown())
+# Example usage
+if __name__ == "__main__":
+    asyncio.run(write_blog("AI agents in creative writing"))
 ```
 
-### **Running ContentGuard Monitor**
-```bash
-# Start continuous monitoring daemon
-python -m agents.content_guard_agent --interval=weekly --auto-refresh
-
-# Check flagged content
-python -m scripts.view_decay_report --threshold=12_months
-```
-
----
-
-## 🎥 Demo Video
-
-**[Watch 3-Minute Demo](https://youtu.be/your-video-link)**
-
-Video includes:
-- Problem articulation with real enterprise pain points
-- Live agent execution (research + validation)
-- Architecture walkthrough with animations
-- ROI dashboard showing time savings
-- Deployment on Agent Engine
+### **Output Files**
+After running the pipeline, check `data/collections/` for:
+- `research_plan.json` - Research query plan
+- `data_analysis.md` - Research findings and themes
+- `query_interpretation.json` - SERP search queries
+- `gap_analysis.md` - Content gaps and opportunities
+- `article_plan.json` - Complete article structure
+- `introduction_section.md` - Introduction content
+- `evidence_sections.md` - Evidence-based content
+- `conceptual_sections.md` - Conceptual explanations
+- `technical_sections.md` - Technical content
+- `conclusion_section.md` - Conclusion content
+- `blog_article.md` - Final formatted article
 
 ---
 
@@ -273,73 +218,83 @@ Video includes:
 
 ```
 blogresearch-ai/
-├── agents/
+├── blog_writing_agent/
 │   ├── __init__.py
-│   ├── data_hunter_agent.py          # Master research agent
-│   ├── gap_analyzer_agent.py         # SERP gap analysis
-│   ├── content_guard_agent.py        # Long-running monitor
-│   └── memory/
-│       ├── __init__.py
-│       ├── memory_bank.py            # ChromaDB vector store
-│       └── session_service.py        # InMemorySessionService
-├── tools/
+│   ├── agent.py                    # Article planner agent
+│   ├── introduction_writer_agent.py
+│   ├── evidence_writer_agent.py
+│   ├── conceptual_writer_agent.py
+│   ├── technical_writer_agent.py
+│   ├── conclusion_writer_agent.py
+│   ├── final_formatter_agent.py
+│   └── plan_filters.py
+├── data_hunter_agent/
 │   ├── __init__.py
-│   ├── mcp_server.py                 # MCP protocol implementation
-│   ├── validator_tool.py             # Triple-source validation
-│   ├── serp_parser.py                # SERP scraping
-│   └── research_toolkit.py           # GoogleSearch, PaywallExtractor
-├── evaluation/
+│   ├── agent.py                    # Root DataHunter agent
+│   └── query_planner_agent.py      # Query planning sub-agent
+├── gap_analyzer_agent/
 │   ├── __init__.py
-│   ├── evaluator.py                  # Agent vs. human baseline
-│   └── metrics.py                    # Accuracy, speed, freshness
-├── deployment/
-│   ├── agent_engine.yaml             # Agent Engine deployment config
-│   └── cloud_run.yaml                # Alternative Cloud Run setup
-├── config/
-│   └── settings.py                   # Environment configuration
-├── scripts/
-│   ├── init_memory_bank.py
-│   └── view_decay_report.py
-├── tests/
-│   ├── test_data_hunter.py
-│   ├── test_gap_analyzer.py
-│   └── test_content_guard.py
+│   ├── agent.py                    # Root GapAnalyzer agent
+│   └── query_interpreter_agent.py   # Query interpretation sub-agent
+├── web_demo/
+│   ├── __init__.py
+│   └── agent.py                    # Main pipeline orchestrator
+├── utils/
+│   ├── __init__.py
+│   ├── retry.py                    # Retry config and Gemini model
+│   └── storage.py                  # File storage utilities
+├── data/
+│   └── collections/                # Output directory for all agent results
+├── main.py                         # Example entry point
 ├── requirements.txt
-├── .env.example
-├── LICENSE
 └── README.md
 ```
 
 ---
 
-## 🏆 Competition Score Justification
+## 🔧 Technical Details
 
-| **Category** | **Points** | **Evidence in This Project** |
-|--------------|------------|------------------------------|
-| **Core Concept & Value** | 15/15 | Solves validated 10-Hour Problem with quantified ROI ($247K/year savings) |
-| **Writeup Quality** | 15/15 | Research-backed problem, clear architecture, documented journey |
-| **Technical Implementation** | 50/50 | 6 required features demonstrated (see sections above) |
-| **Documentation** | 20/20 | This README + inline code comments + architecture diagrams |
-| **Gemini Use** | ✅ 5/5 | All agents powered by Gemini 1.5 Pro with documented reasoning |
-| **Deployment** | ✅ 5/5 | Agent Engine + Cloud Run configs included with setup docs |
-| **Video** | ✅ 10/10 | 3-min demo with problem, architecture, live execution, build process |
-| **TOTAL** | **120/100** | (Capped at 100 max points) |
+### **Agent Patterns**
+- **SequentialAgent**: Used for multi-step workflows (research → collection → synthesis)
+- **ParallelAgent**: Used for concurrent content writing (5 writer agents run simultaneously)
+- **LlmAgent**: Individual LLM-powered agents with specific instructions and output schemas
+
+### **Model Configuration**
+- **Model**: Gemini 2.5 Flash Lite
+- **Retry Logic**: HTTP retry with exponential backoff (5 attempts, 7x multiplier)
+- **Retry Status Codes**: 429, 500, 503, 504
+
+### **Storage Mechanism**
+- **Storage Callbacks**: Each agent uses `after_agent_callback` to persist outputs
+- **File Formats**: JSON for structured data, Markdown for content
+- **Metadata**: YAML frontmatter in Markdown files includes timestamp, invocation ID, agent name
 
 ---
 
-## 🔐 Security & Best Practices
+## 🏆 Project Highlights
 
-- **No API keys** in code—use environment variables only
-- **Rate limiting** built into all research tools (respects API limits)
-- **Source attribution** mandatory—agent always includes citations
-- **Data privacy**: No PII stored in Memory Bank; uses anonymized content IDs
-- **Compliance**: Ready for SOC2 with audit logs in observability layer
+| **Category** | **Details** |
+|--------------|-------------|
+| **Core Concept & Value** | Solves validated 10-Hour Problem with quantified time savings |
+| **Technical Implementation** | Multi-agent system with sequential and parallel patterns |
+| **Documentation** | This README + inline code comments |
+| **Gemini Use** | All agents powered by Gemini 2.5 Flash Lite |
+| **Architecture** | Hierarchical multi-agent system using Google ADK |
+
+---
+
+## 🔐 Best Practices
+
+- **No API keys in code**—use environment variables only
+- **Source attribution**—agent outputs include citations where applicable
+- **Modular design**—each agent is independently testable and maintainable
+- **Error handling**—storage callbacks include error handling to prevent pipeline failures
 
 ---
 
 ## 🤝 Contributing
 
-This is a capstone project. For questions, reach out on Kaggle Discord: `@your-username`
+This is a capstone project. For questions, reach out on mail: `solankivishvjit06@gmail.com`
 
 ---
 
@@ -351,9 +306,8 @@ This is a capstone project. For questions, reach out on Kaggle Discord: `@your-u
 
 ---
 
-**Built with [Google ADK](https://adk.docs) | Deployed on [Agent Engine](https://cloud.google.com/agent-engine) | Powered by [Gemini](https://ai.google.dev)**
+**Built with [Google ADK](https://adk.docs) | Powered by [Gemini](https://ai.google.dev)**
 
 ---
 
 *Submitted for Kaggle Agents Intensive Capstone Project | Dec 1, 2025*
-```
