@@ -10,16 +10,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repo B (source)
+      - name: Checkout Repo B (Source)
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Clone Repo A (destination)
+      - name: Clone Repo A (Destination)
         run: |
-          git clone https://${{ secrets.SYNC_TOKEN }}@github.com/parthShah2211ps/Content-Generation- repo_a
-          rsync -av --delete --exclude=".git" ./ repo_a/ || true
-          cd repo_a
+          git clone https://x-access-token:${{ secrets.SYNC_TOKEN }}@github.com/parthShah2211ps/Content-Generation-.git repoA
+
+      - name: Sync files to Repo A
+        run: |
+          rsync -av --delete --exclude '.git' ./ repoA/
+
+      - name: Commit & Push to Repo A
+        run: |
+          cd repoA
+          git config user.email "github-actions@github.com"
+          git config user.name "GitHub Actions"
           git add .
-          git commit -m "Auto-sync from vishvjit18/From-10-to-2-The-AI-Agent-That-Writes-Enterprise-Blogs-5x-Faster" || echo "No changes to commit"
+          git commit -m "Auto-sync from Repo B" || echo "No changes to commit"
           git push
