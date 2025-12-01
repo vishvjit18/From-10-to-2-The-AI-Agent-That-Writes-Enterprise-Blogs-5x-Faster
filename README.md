@@ -158,21 +158,29 @@ This project demonstrates **multi-agent system architecture** using Google ADK:
 
 ### **Prerequisites**
 - Python 3.10+
-- Google Cloud Account (for Gemini API)
+- Google AI Studio account (for Gemini API)
 - Google ADK installed (`google-adk` package)
 
 ### **Installation**
 ```bash
 # Clone repository
-git clone https://github.com/your-username/blogresearch-ai.git
-cd blogresearch-ai
+git clone https://github.com/vishvjit18/From-10-to-2-The-AI-Agent-That-Writes-Enterprise-Blogs-5x-Faster
 
 # Install dependencies
 pip install -r requirements.txt
 
 # Set up environment variables
-# Create .env file with:
-# GOOGLE_API_KEY=your_api_key_here
+Create .env file with:
+GOOGLE_API_KEY=your_api_key_here
+```
+### **Run the project**
+```
+adk web --port 8000
+```
+
+### **Open the browser**
+```
+Select Web Demo in left corner and enter the topic you want to write about and click on Run button.
 ```
 
 ### **Basic Usage**
