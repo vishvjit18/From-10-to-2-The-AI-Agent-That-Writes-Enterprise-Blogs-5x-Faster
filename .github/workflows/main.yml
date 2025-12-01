@@ -19,9 +19,12 @@ jobs:
         run: |
           git clone https://x-access-token:${{ secrets.SYNC_TOKEN }}@github.com/parthShah2211ps/Content-Generation-.git repoA
 
-      - name: Sync files to Repo A
+      - name: Sync files to Repo A (Ignore vanishing files)
         run: |
+          set +e
           rsync -av --delete --exclude '.git' ./ repoA/
+          # Ignore exit code 24 ("file vanished")
+          exit 0
 
       - name: Commit & Push to Repo A
         run: |
