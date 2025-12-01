@@ -1,9 +1,9 @@
-name: Auto Sync From Repo B → Repo A
+name: Auto Sync From Repo B → Repo A (Safe Branch Sync)
 
 on:
   push:
     branches:
-      - main
+      - main   # When Repo B main updates
 
 jobs:
   sync:
@@ -19,18 +19,22 @@ jobs:
         run: |
           git clone https://x-access-token:${{ secrets.SYNC_TOKEN }}@github.com/parthShah2211ps/Content-Generation-.git repoA
 
-      - name: Sync files to Repo A (Ignore vanishing files)
+      - name: Create or switch to sync branch
+        run: |
+          cd repoA
+          git checkout -B sync-from-repo-b
+
+      - name: Sync files (ignore vanished files)
         run: |
           set +e
           rsync -av --delete --exclude '.git' ./ repoA/
-          # Ignore exit code 24 ("file vanished")
           exit 0
 
-      - name: Commit & Push to Repo A
+      - name: Commit & Push to Repo A (sync branch)
         run: |
           cd repoA
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions"
           git add .
-          git commit -m "Auto-sync from Repo B" || echo "No changes to commit"
-          git push
+          git commit -m "Auto-sync from Repo B → sync-from-repo-b branch" || echo "No changes to commit"
+          git push -u origin sync-from-repo-b
