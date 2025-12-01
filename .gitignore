@@ -2,3 +2,4 @@ docs/
 .env
 changelog.md
 __pycache__/
+remember.md
