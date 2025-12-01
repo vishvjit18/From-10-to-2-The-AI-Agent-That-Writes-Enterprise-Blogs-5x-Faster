@@ -184,19 +184,61 @@ from web_demo.agent import root_agent
 
 load_dotenv()
 
-# Initialize runner
+# Initialize runner with the blog writing pipeline
+# The pipeline orchestrates: research → analysis → planning → parallel writing → formatting
 runner = InMemoryRunner(agent=root_agent, app_name="blog_writing_agent")
 
 # Run the complete blog writing pipeline
 async def write_blog(topic: str):
+    """
+    Executes the complete blog writing pipeline:
+    1. DataHunter Agent: Plans research and collects data
+    2. GapAnalyzer Agent: Analyzes SERP and identifies gaps
+    3. Article Planner Agent: Creates structured article plan
+    4. Parallel Writer Agents: All 5 writer agents execute concurrently
+       - Introduction Writer
+       - Evidence Writer
+       - Conceptual Writer
+       - Technical Writer
+       - Conclusion Writer
+    5. Final Formatter Agent: Combines all sections into final article
+    """
     response = await runner.run_debug(topic)
     print(response)
-    # Output files will be saved to data/collections/
+    # All output files are automatically saved to data/collections/
 
 # Example usage
 if __name__ == "__main__":
+    # The pipeline will execute sequentially until the parallel writer stage,
+    # then all 5 writer agents run concurrently for improved performance
     asyncio.run(write_blog("AI agents in creative writing"))
 ```
+
+### **Pipeline Execution Flow**
+The `root_agent` from `web_demo/agent.py` orchestrates the complete workflow:
+
+```python
+# Sequential stages (executed one after another):
+# 1. data_hunter_agent → Research planning and data collection
+# 2. gap_analyzer_agent → SERP analysis and gap identification  
+# 3. article_planner_agent → Create structured article plan
+
+# Parallel stage (executed concurrently):
+# 4. parallel_writer_agents → All 5 writer agents run simultaneously:
+#    - introduction_writer_agent
+#    - evidence_writer_agent
+#    - conceptual_writer_agent
+#    - conclusion_writer_agent
+#    - technical_writer_agent
+
+# Final sequential stage:
+# 5. final_formatter_agent → Combine all sections into publication-ready article
+```
+
+**Key Benefits of Parallel Execution:**
+- **Performance**: All writer agents execute concurrently, reducing total execution time
+- **Independence**: Each agent works on different sections with distinct output keys
+- **Efficiency**: No blocking between writer agents—they all start after article planning completes
 
 ### **Output Files**
 After running the pipeline, check `data/collections/` for:
