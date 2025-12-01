@@ -18,7 +18,7 @@ jobs:
       - name: Clone Repo A (destination)
         run: |
           git clone https://${{ secrets.SYNC_TOKEN }}@github.com/parthShah2211ps/Content-Generation- repo_a
-          rsync -av --delete --exclude=".git" ./ repo_a/
+          rsync -av --delete --exclude=".git" ./ repo_a/ || true
           cd repo_a
           git add .
           git commit -m "Auto-sync from vishvjit18/From-10-to-2-The-AI-Agent-That-Writes-Enterprise-Blogs-5x-Faster" || echo "No changes to commit"
