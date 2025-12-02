@@ -26,12 +26,11 @@ jobs:
           git reset --hard
           git clean -fd
 
-      # 🔥 CRITICAL FIX — remove nested repoA from source
-      - name: Remove nested repoA folder inside Repo B checkout
+      - name: Remove nested repoA in source
         run: |
           rm -rf repoA
 
-      # 🔥 Safe rsync — no nesting, no deleting infra files
+      # 🔥 RSYNC DIRECT INTO ROOT OF REPO A (NO NESTING!)
       - name: Sync files safely
         run: |
           rsync -av --delete \
@@ -45,13 +44,14 @@ jobs:
             --exclude 'setup-gcp-deployment.sh' \
             --exclude 'setup-gcp-deployment.ps1' \
             --exclude 'deployment/' \
-            ./ repoA/
+            ./ repoA/   # ← correct root sync
 
       - name: Commit & Force Push
         run: |
           cd repoA
+          git checkout -B sync-from-repo-b
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions"
-          git add .
+          git add -A
           git commit -m "Safe force sync from Repo B → sync-from-repo-b" || echo "No changes"
-          git push origin sync-from-repo-b --force
+          git push -u origin sync-from-repo-b --force
