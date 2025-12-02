@@ -1,45 +1,49 @@
-name: Auto Sync From Repo B → Repo A (Safe Branch Sync)
+name: Auto Sync From Repo B → Repo A (Force Sync)
 
 on:
   push:
     branches:
-      - main   # Trigger when Repo B's main updates
+      - main   # When Repo B is updated
 
 jobs:
   sync:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout Repo B
-      - name: Checkout Repo B (source)
+      # Checkout Repo B (source)
+      - name: Checkout Repo B
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      # Clone Repo A
-      - name: Clone Repo A (destination)
+      # Clone Repo A (destination)
+      - name: Clone Repo A
         run: |
           git clone https://x-access-token:${{ secrets.SYNC_TOKEN }}@github.com/parthShah2211ps/Content-Generation-.git repoA
 
       # Switch to sync branch
-      - name: Checkout sync branch in Repo A
+      - name: Prepare sync branch
         run: |
           cd repoA
+          # Create branch if not exists
           git checkout -B sync-from-repo-b
-          git pull origin sync-from-repo-b || true
+          # Ensure branch has no untracked files
+          git reset --hard
+          git clean -fd
 
-      # Sync files WITHOUT creating nested repoA folder
-      - name: Sync files from Repo B → Repo A
+      # Copy files WITHOUT creating nested folders
+      - name: Sync files (force overwrite)
         run: |
           rsync -av --delete --exclude '.git' --exclude 'repoA' ./ repoA/
 
-      # Commit & Push
-      - name: Commit & Push to Repo A
+      # Commit & Force Push
+      - name: Commit & Force Push
         run: |
           cd repoA
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions"
           git add .
-          git commit -m "Auto-sync from Repo B → sync-from-repo-b branch" || echo "No changes"
-          git pull --rebase origin sync-from-repo-b || true
-          git push -u origin sync-from-repo-b
+          git commit -m "Force sync from Repo B → sync-from-repo-b branch" || echo "No changes"
+
+          # 🚨 FORCE OVERWRITE REMOTE BRANCH 🚨
+          git push origin sync-from-repo-b --force
