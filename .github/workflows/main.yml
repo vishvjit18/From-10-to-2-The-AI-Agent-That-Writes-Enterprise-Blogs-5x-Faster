@@ -26,10 +26,18 @@ jobs:
           git reset --hard
           git clean -fd
 
-      - name: Sync files (safe mode - exclude Docker setup)
+      # 🔥 CRITICAL FIX — remove nested repoA from source
+      - name: Remove nested repoA folder inside Repo B checkout
+        run: |
+          rm -rf repoA
+
+      # 🔥 Safe rsync — no nesting, no deleting infra files
+      - name: Sync files safely
         run: |
           rsync -av --delete \
             --exclude '.git' \
+            --exclude 'repoA/' \
+            --exclude '.github/workflows' \
             --exclude 'Dockerfile' \
             --exclude '.dockerignore' \
             --exclude 'cloudbuild.yaml' \
