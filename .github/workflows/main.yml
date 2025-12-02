@@ -3,38 +3,43 @@ name: Auto Sync From Repo B → Repo A (Safe Branch Sync)
 on:
   push:
     branches:
-      - main   # When Repo B main updates
+      - main   # Trigger when Repo B's main updates
 
 jobs:
   sync:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repo B (Source)
+      # Checkout Repo B
+      - name: Checkout Repo B (source)
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Clone Repo A (Destination)
+      # Clone Repo A
+      - name: Clone Repo A (destination)
         run: |
           git clone https://x-access-token:${{ secrets.SYNC_TOKEN }}@github.com/parthShah2211ps/Content-Generation-.git repoA
 
-      - name: Create or switch to sync branch
+      # Switch to sync branch
+      - name: Checkout sync branch in Repo A
         run: |
           cd repoA
           git checkout -B sync-from-repo-b
+          git pull origin sync-from-repo-b || true
 
-      - name: Sync files (ignore vanished files)
+      # Sync files WITHOUT creating nested repoA folder
+      - name: Sync files from Repo B → Repo A
         run: |
-          set +e
-          rsync -av --delete --exclude '.git' ./ repoA/
-          exit 0
+          rsync -av --delete --exclude '.git' --exclude 'repoA' ./ repoA/
 
-      - name: Commit & Push to Repo A (sync branch)
+      # Commit & Push
+      - name: Commit & Push to Repo A
         run: |
           cd repoA
           git config user.email "github-actions@github.com"
           git config user.name "GitHub Actions"
           git add .
-          git commit -m "Auto-sync from Repo B → sync-from-repo-b branch" || echo "No changes to commit"
+          git commit -m "Auto-sync from Repo B → sync-from-repo-b branch" || echo "No changes"
+          git pull --rebase origin sync-from-repo-b || true
           git push -u origin sync-from-repo-b
