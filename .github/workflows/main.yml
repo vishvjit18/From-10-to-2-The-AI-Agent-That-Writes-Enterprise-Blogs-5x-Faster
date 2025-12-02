@@ -8,11 +8,13 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout Repo A
         uses: actions/checkout@v4
         with:
           path: repoA
+          token: ${{ secrets.SYNC_TOKEN }}
 
       - name: Checkout Repo B
         uses: actions/checkout@v4
@@ -21,24 +23,33 @@ jobs:
           token: ${{ secrets.SYNC_TOKEN }}
           path: repoB
 
-      - name: Sync Repo B → Repo A (flatten, no nested folders)
+      - name: Sync Repo B → Repo A (no nested folders)
         run: |
           rsync -av --delete \
             --exclude '.git/' \
+            --exclude '.github/' \
             repoB/ repoA/
-      
-      - name: Commit changes
+
+      - name: Setup Git for Repo A
         run: |
           cd repoA
           git config user.name "GitHub Action"
           git config user.email "action@github.com"
-          
-          git checkout -B sync-from-repo-b
+
+      - name: Commit changes
+        run: |
+          cd repoA
+          git checkout -B sync-from-repo-b || git checkout sync-from-repo-b
           git add .
-          git commit -m "Sync from Repo B → Repo A" || echo "No changes"
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Sync from Repo B → Repo A [$(date +'%Y-%m-%d %H:%M:%S')]"
+          fi
 
       - name: Push to Repo A branch
         run: |
           cd repoA
           git push https://${{ secrets.SYNC_TOKEN }}@github.com/parthShah2211ps/Content-Generation.git \
             sync-from-repo-b:sync-from-repo-b --force
+
