@@ -1,57 +1,44 @@
-name: Auto Sync From Repo B → Repo A (Force Sync Safe)
+name: Sync Repo B → Repo A
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
 
 jobs:
   sync:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repo B
-        uses: actions/checkout@v3
+      - name: Checkout Repo A
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          path: repoA
 
-      - name: Clone Repo A
-        run: |
-          git clone https://x-access-token:${{ secrets.SYNC_TOKEN }}@github.com/parthShah2211ps/Content-Generation-.git repoA
+      - name: Checkout Repo B
+        uses: actions/checkout@v4
+        with:
+          repository: vishvjit18/From-10-to-2-The-AI-Agent-That-Writes-Enterprise-Blogs-5x-Faster
+          token: ${{ secrets.SYNC_TOKEN }}
+          path: repoB
 
-      - name: Prepare sync branch
-        run: |
-          cd repoA
-          git checkout -B sync-from-repo-b
-          git reset --hard
-          git clean -fd
-
-      - name: Remove nested repoA in source
-        run: |
-          rm -rf repoA
-
-      # 🔥 RSYNC DIRECT INTO ROOT OF REPO A (NO NESTING!)
-      - name: Sync files safely
+      - name: Sync Repo B → Repo A (flatten, no nested folders)
         run: |
           rsync -av --delete \
-            --exclude '.git' \
-            --exclude 'repoA/' \
-            --exclude '.github/workflows' \
-            --exclude 'Dockerfile' \
-            --exclude '.dockerignore' \
-            --exclude 'cloudbuild.yaml' \
-            --exclude 'cloudbuild-no-secret.yaml' \
-            --exclude 'setup-gcp-deployment.sh' \
-            --exclude 'setup-gcp-deployment.ps1' \
-            --exclude 'deployment/' \
-            ./ repoA/   # ← correct root sync
-
-      - name: Commit & Force Push
+            --exclude '.git/' \
+            repoB/ repoA/
+      
+      - name: Commit changes
         run: |
           cd repoA
+          git config user.name "GitHub Action"
+          git config user.email "action@github.com"
+          
           git checkout -B sync-from-repo-b
-          git config user.email "github-actions@github.com"
-          git config user.name "GitHub Actions"
-          git add -A
-          git commit -m "Safe force sync from Repo B → sync-from-repo-b" || echo "No changes"
-          git push -u origin sync-from-repo-b --force
+          git add .
+          git commit -m "Sync from Repo B → Repo A" || echo "No changes"
+
+      - name: Push to Repo A branch
+        run: |
+          cd repoA
+          git push https://${{ secrets.SYNC_TOKEN }}@github.com/parthShah2211ps/Content-Generation.git \
+            sync-from-repo-b:sync-from-repo-b --force
