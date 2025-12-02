@@ -8,7 +8,7 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout Repo A
         uses: actions/checkout@v4
@@ -39,7 +39,7 @@ jobs:
       - name: Commit changes
         run: |
           cd repoA
-          git checkout -B sync-from-repo-b || git checkout sync-from-repo-b
+          git switch -C sync-from-repo-b
           git add .
           if git diff --staged --quiet; then
             echo "No changes to commit"
@@ -50,6 +50,6 @@ jobs:
       - name: Push to Repo A branch
         run: |
           cd repoA
-          git push https://${{ secrets.SYNC_TOKEN }}@github.com/parthShah2211ps/Content-Generation.git \
+          git push \
+            https://x-access-token:${{ secrets.SYNC_TOKEN }}@github.com/parthShah2211ps/Content-Generation.git \
             sync-from-repo-b:sync-from-repo-b --force
-
