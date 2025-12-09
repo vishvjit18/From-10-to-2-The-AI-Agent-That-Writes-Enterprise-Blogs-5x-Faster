@@ -1,0 +1,20 @@
+{
+  "timestamp": "20251204_220755",
+  "invocation_id": "e-66160c86-9d96-4786-a46e-eb90f730d2e6",
+  "agent_name": "openrouter_ai_detector",
+  "output_key": "ai_detection_result",
+  "output": {
+    "label": "mixed",
+    "ai_probability": 0.35,
+    "confidence": "medium",
+    "explanation": "The refined version shows sophisticated risk-aware rewording with improved flow and intentional imperfections. While technical accuracy remains intact, humanizing strategies include varied sentence lengths, natural transitions replacing headings, strategic repetition reduction, and subtle conversational markers. The professional writing room analogy flows organically without section breaks, demonstrating conscious stylistic adaptation.",
+    "indicators": [
+      "Natural sentence rhythm changes (12-20 words per sentence)",
+      "Conversational markers like 'What genuinely surprises me'",
+      "Headings removed in favor of paragraph transitions",
+      "Table converted to descriptive framework comparisons",
+      "Varied phrasing for 'writing room' analogy (professional writing room/collaborative workshop dynamics)",
+      "Strategic repetition reduction (original used key phrases 7× vs. refined's 3×)"
+    ]
+  }
+}

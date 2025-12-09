@@ -310,7 +310,8 @@ blogresearch-ai/
 - **LlmAgent**: Individual LLM-powered agents with specific instructions and output schemas
 
 ### **Model Configuration**
-- **Model**: Gemini 2.5 Flash Lite
+- **Primary Model**: Gemini 2.5 Flash Lite (default)
+- **OpenRouter Support**: Alibaba Tongyi DeepResearch 30B (free tier) via LiteLLM
 - **Retry Logic**: HTTP retry with exponential backoff (5 attempts, 7x multiplier)
 - **Retry Status Codes**: 429, 500, 503, 504
 
@@ -339,6 +340,56 @@ blogresearch-ai/
 - **Source attribution**—agent outputs include citations where applicable
 - **Modular design**—each agent is independently testable and maintainable
 - **Error handling**—storage callbacks include error handling to prevent pipeline failures
+
+---
+
+## 🌐 OpenRouter Integration
+
+This project supports using OpenRouter models via LiteLLM integration with Google ADK. This enables access to free-tier models and additional model providers.
+
+### **Setup**
+
+1. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Set environment variable**:
+   ```bash
+   export OPENROUTER_API_KEY="your_openrouter_api_key"
+   ```
+   Get your API key from [OpenRouter.ai](https://openrouter.ai/)
+
+3. **Use in agents**:
+   ```python
+   from google.adk.agents import LlmAgent
+   from utils.openrouter_model import create_openrouter_model
+   
+   # Use default model (alibaba/tongyi-deepresearch-30b-a3b:free)
+   model = create_openrouter_model()
+   agent = LlmAgent(
+       model=model,
+       name="my_agent",
+       instruction="Your instructions here..."
+   )
+   
+   # Or use a different OpenRouter model
+   custom_model = create_openrouter_model("openrouter/mistralai/mixtral-8x7b-instruct")
+   ```
+
+### **Default Model**
+
+The default OpenRouter model is `alibaba/tongyi-deepresearch-30b-a3b:free` (free tier).
+
+### **Available Models**
+
+You can use any OpenRouter model by specifying the full model identifier:
+- `openrouter/alibaba/tongyi-deepresearch-30b-a3b:free` (default, free tier)
+- `openrouter/mistralai/mixtral-8x7b-instruct` (free tier)
+- `openrouter/meta-llama/llama-3-8b-instruct` (free tier)
+- Any other model available on OpenRouter
+
+See [OpenRouter Models](https://openrouter.ai/models) for the full list.
 
 ---
 
