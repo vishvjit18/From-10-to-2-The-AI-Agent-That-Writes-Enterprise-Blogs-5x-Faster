@@ -1,33 +1,27 @@
 {
-  "timestamp": "20251201_232008",
-  "invocation_id": "e-6f6a620c-826c-4ab0-86f1-99a72debcdaf",
+  "timestamp": "20251209_191754",
+  "invocation_id": "e-f5271e84-51d8-4cb4-942b-d6ce2c8a1c02",
   "agent_name": "query_planner",
   "output_key": "research_plan",
   "output": {
     "tasks": [
       {
-        "search_query": "\"AI agents\" \"creative writing\" \"architectures\" filetype:pdf site:.edu",
+        "search_query": "AI in creative industries filetype:pdf site:.org",
         "source_pref": "academic",
         "freshness_window": "≤18 months",
-        "reasoning": "To address the gap regarding specific AI agent architectures, this query targets academic papers that detail the technical design and implementation of AI systems used in creative writing, aiming for in-depth technical understanding."
+        "reasoning": "To understand the latest academic research and theoretical frameworks on AI's impact and application in creative fields."
       },
       {
-        "search_query": "\"AI tools\" \"creative writing\" \"feature comparison\" filetype:pdf site:.org",
+        "search_query": "AI tools for creative professionals case studies filetype:pdf site:.org",
+        "source_pref": "industry",
+        "freshness_window": "≤18 months",
+        "reasoning": "To identify practical, real-world applications and case studies of AI tools being used by creative professionals, focusing on recent developments."
+      },
+      {
+        "search_query": "future of AI in art and design trends filetype:pdf site:.org",
         "source_pref": "mixed",
-        "freshness_window": "≤18 months",
-        "reasoning": "To fill the gap on granular tool capabilities, this query seeks comparative analyses or reviews of AI tools for creative writing, focusing on specific features and their application across different writing stages. The 'mixed' source preference allows for both academic evaluations and industry-focused comparisons."
-      },
-      {
-        "search_query": "\"AI generated writing\" \"quality comparison\" \"case studies\" filetype:pdf site:.org",
-        "source_pref": "academic",
-        "freshness_window": "≤18 months",
-        "reasoning": "To explore the qualitative differences between AI and human writing, this query targets academic case studies and comparative analyses that evaluate the output of AI in creative writing, addressing the gap concerning the actual quality and insightfulness of AI-generated content."
-      },
-      {
-        "search_query": "\"ethical frameworks\" \"creative writers\" \"AI usage\" filetype:pdf site:.org",
-        "source_pref": "academic",
-        "freshness_window": "≤18 months",
-        "reasoning": "To address the need for practical ethical guidance, this query focuses on academic research that proposes or discusses ethical frameworks and best practices specifically for creative writers utilizing AI tools, aiming to provide actionable insights."
+        "freshness_window": "2024-2025",
+        "reasoning": "To explore emerging trends and future outlooks for AI within artistic and design disciplines, looking for forward-looking insights."
       }
     ]
   }
