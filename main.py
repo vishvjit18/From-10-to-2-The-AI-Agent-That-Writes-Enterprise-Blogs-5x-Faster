@@ -1,7 +1,7 @@
 """
-Main entry point for DataHunter agent package.
+Utility entry point for running sample agents in the blog writing system.
 
-This module handles initialization and configuration for the DataHunter agents.
+This module handles initialization and configuration for quick local testing.
 """
 
 import os
@@ -9,12 +9,14 @@ import asyncio
 from dotenv import load_dotenv
 from google.adk.runners import InMemoryRunner
 from blog_writing_agent.final_formatter_agent import final_formatter_agent
-
+from utils.config import config
 # Load environment variables from .env file
 load_dotenv()
 
 # Set up Google API key from environment
-GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+# Set up Google API key from config
+
+GOOGLE_API_KEY = config.get("GOOGLE_API_KEY")
 if GOOGLE_API_KEY:
     os.environ["GOOGLE_API_KEY"] = GOOGLE_API_KEY
 

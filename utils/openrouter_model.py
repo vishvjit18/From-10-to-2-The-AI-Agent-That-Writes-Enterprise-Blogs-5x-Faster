@@ -52,10 +52,11 @@ def create_openrouter_model(model_name: str = None) -> LiteLlm:
         model_name = f"openrouter/{model_name}"
     
     # Check for API key
-    api_key = os.getenv("OPENROUTER_API_KEY")
+    from utils.config import config
+    api_key = config.get("OPENROUTER_API_KEY")
     if not api_key:
         raise ValueError(
-            "OPENROUTER_API_KEY environment variable is required. "
+            "OPENROUTER_API_KEY is required in config.yaml or environment variables. "
             "Get your API key from https://openrouter.ai/"
         )
     

@@ -1,8 +1,8 @@
 """
 GapAnalyzer agent definition.
 
-This agent focuses on SERP analysis to uncover content gaps, complementary
-to the DataHunter research workflows.
+This agent focuses on SERP analysis to uncover content gaps in isolation or
+as the first step of the blog writing workflow.
 
 The agent uses a multi-agent architecture with specialized sub-agents:
 - query_interpreter: Expands user queries into precise search strings
@@ -27,7 +27,7 @@ serp_tool_agent = LlmAgent(
        "You are a tool-using agent. Your purpose is to execute the research tasks "
         "and collect raw search results.\n\n"
         "Process:\n"
-        "1. Read the research_plan {query_interpretation}.\n"
+        "1. Read the query_interpretation {query_interpretation}.\n"
         "2. For each task, call the google_search tool with the exact search_query string.\n"
         "3. Collect all raw search results in a structured format.\n"
         "4. Return the complete set of raw results for structuring.\n\n"

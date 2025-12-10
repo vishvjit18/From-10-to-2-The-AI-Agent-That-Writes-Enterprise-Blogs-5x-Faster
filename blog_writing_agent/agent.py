@@ -1,8 +1,8 @@
 """
 Article Planner sub-agent for Blog Writing system.
 
-This agent handles Step 1: analyzing research and gap analysis files to create
-a comprehensive, structured article plan with sections, key points, and content requirements.
+This agent analyzes the gap analysis findings to create a comprehensive,
+structured article plan with sections, key points, and content requirements.
 """
 import json
 from pathlib import Path
@@ -14,8 +14,9 @@ from utils.storage import create_storage_callback
 from . import ArticlePlan
 
 
-def _load_analysis_files() -> tuple[str, str]:
-    """Load the analysis files from data/collections directory."""
+def _load_gap_analysis() -> str:
+    """Load the gap analysis file from data/collections directory."""
+
     def _load_file(file_path: Path, error_message: str) -> str:
         """Helper function to load and parse a JSON file."""
         if not file_path.exists():
@@ -27,40 +28,32 @@ def _load_analysis_files() -> tuple[str, str]:
                 return json.dumps(plan_data, indent=2, ensure_ascii=False)
         except Exception as e:
             return f"[Error loading {file_path.name}: {e}]"
-    
+
     data_dir = Path("data/collections")
-    data_analysis = _load_file(
-        data_dir / "data_analysis.md",
-        "[Data analysis file not found. Please run the Data Hunter Agent first.]"
-    )
-    gap_analysis = _load_file(
+    return _load_file(
         data_dir / "gap_analysis.md",
         "[Gap analysis file not found. Please run the Gap Analysis Agent first.]"
     )
-    
-    return data_analysis, gap_analysis
 
 
-
-data_analysis, gap_analysis = _load_analysis_files()
+gap_analysis = _load_gap_analysis()
 root_agent = LlmAgent(
     name="article_planner",
     model=gemini_model,
     description=(
-        "Analyzes research and gap analysis files to create a comprehensive, structured "
+        "Analyzes gap analysis findings to create a comprehensive, structured "
         "article plan with sections, key points, evidence needs, and content requirements."
     ),
     instruction = (
-        "You are the Article Planner Agent. Your task is to analyze the provided analysis "
-        "files and create a detailed, structured plan for a comprehensive blog article.\n\n"
+        "You are the Article Planner Agent. Your task is to analyze the provided findings "
+        "and create a detailed, structured plan for a comprehensive blog article.\n\n"
         
         "## Analysis Files\n\n"
-        "You have access to two analysis files:\n"
-        f"- Data Analysis File:\n{data_analysis}\n\n"
+        "You have access to the gap analysis findings:\n"
         f"- Gap Analysis File:\n{gap_analysis}\n\n"
         
         "## Your Task\n\n"
-        "Analyze both files to understand:\n"
+        "Analyze the findings to understand:\n"
         "- Key themes and patterns identified in the research\n"
         "- Content gaps and opportunities for differentiation\n"
         "- Required focus areas and topics to address\n"
@@ -126,7 +119,7 @@ root_agent = LlmAgent(
         "- Provide specific, actionable guidance for content writers\n"
         "- Make the plan comprehensive and detailed\n\n"
         
-        "Begin analyzing the files and creating the comprehensive article plan now."
+        "Begin analyzing the findings and creating the comprehensive article plan now."
     ),
     output_schema=ArticlePlan,
     output_key="article_plan",

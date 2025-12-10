@@ -26,15 +26,10 @@ This is a **hierarchical multi-agent system** that automates end-to-end research
 
 ```mermaid
 flowchart TD
-    A[Blog Writing Pipeline] --> B[DataHunter Agent]
-    A --> C[GapAnalyzer Agent]
+    A[Blog Writing Pipeline] --> C[GapAnalyzer Agent]
     A --> D[Article Planner Agent]
     A --> E[Parallel Writer Agents]
     A --> F[Final Formatter Agent]
-    
-    B --> B1[Query Planner]
-    B --> B2[Tool Collector]
-    B --> B3[Synthesis Agent]
     
     C --> C1[Query Interpreter]
     C --> C2[SERP Collector]
@@ -47,7 +42,6 @@ flowchart TD
     E --> E5[Conclusion Writer]
     
     style A fill:#e1f5ff,stroke:#01579b,stroke-width:3px
-    style B fill:#fff3e0,stroke:#e65100,stroke-width:2px
     style C fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
     style D fill:#e8f5e9,stroke:#1b5e20,stroke-width:2px
     style E fill:#fce4ec,stroke:#880e4f,stroke-width:2px
@@ -56,27 +50,7 @@ flowchart TD
 
 ### **Agent Specifications**
 
-#### **1. DataHunter Agent (Research Agent)**
-- **Type:** Sequential agent with LLM-powered sub-agents
-- **Function:** Plans research queries and collects data from Google Search
-- **Sub-Agents:**
-  - **Query Planner Agent**: Interprets user research briefs and expands them into 3 specific research tasks with optimized search queries
-  - **Tool Collector Agent**: Executes Google searches for each research task and collects raw results
-  - **Synthesis Agent**: Processes SERP results into structured data analysis with themes and insights
-- **Tools:** `google.adk.tools.google_search` (Google Search API)
-- **Model:** Gemini 2.5 Flash Lite
-- **Output:** Saves `research_plan.json` and `data_analysis.md` to `data/collections/`
-
-**Example Execution:**
-```python
-# Input: "AI agents in creative writing"
-# Output:
-- Research plan with 3 optimized search queries
-- Raw search results from Google
-- Structured data analysis with themes and insights
-```
-
-#### **2. GapAnalyzer Agent (SERP Analysis Agent)**
+#### **1. GapAnalyzer Agent (SERP Analysis Agent)**
 - **Type:** Sequential agent with LLM-powered sub-agents
 - **Function:** Analyzes SERP results to identify content gaps and opportunities
 - **Sub-Agents:**
@@ -92,10 +66,10 @@ flowchart TD
 - Identified Gaps: Missing subtopics and weak coverage areas
 - Opportunities: Recommendations for differentiation
 
-#### **3. Article Planner Agent**
+#### **2. Article Planner Agent**
 - **Type:** LLM-powered agent
-- **Function:** Analyzes research and gap analysis files to create a comprehensive article plan
-- **Input:** Reads `data_analysis.md` and `gap_analysis.md` from `data/collections/`
+- **Function:** Analyzes gap analysis findings to create a comprehensive article plan
+- **Input:** Reads `gap_analysis.md` from `data/collections/`
 - **Output:** Structured `ArticlePlan` JSON with:
   - Article overview (target audience, purpose, key message)
   - Detailed section structure with key points and evidence needs
@@ -105,7 +79,7 @@ flowchart TD
 - **Model:** Gemini 2.5 Flash Lite
 - **Output:** Saves `article_plan.json` to `data/collections/`
 
-#### **4. Parallel Writer Agents**
+#### **3. Parallel Writer Agents**
 - **Type:** Parallel agent executing 5 specialized writer agents concurrently
 - **Function:** Writes different sections of the blog article in parallel
 - **Sub-Agents:**
@@ -117,7 +91,7 @@ flowchart TD
 - **Model:** Gemini 2.5 Flash Lite (all agents)
 - **Output:** Each agent saves its section to `data/collections/` as markdown files
 
-#### **5. Final Formatter Agent**
+#### **4. Final Formatter Agent**
 - **Type:** LLM-powered agent
 - **Function:** Combines all written sections into a publication-ready blog article
 - **Input:** Reads all section markdown files from `data/collections/`
@@ -132,9 +106,9 @@ flowchart TD
 This project demonstrates **multi-agent system architecture** using Google ADK:
 
 ### ✅ **1. Multi-Agent System**
-- **Sequential Agents:** DataHunter, GapAnalyzer, Article Planner, Final Formatter use SequentialAgent pattern
+- **Sequential Agents:** GapAnalyzer and the formatting pipeline run with the SequentialAgent pattern
 - **Parallel Agents:** Five writer agents execute concurrently using ParallelAgent pattern
-- **Hierarchical:** Master pipeline orchestrates research → analysis → planning → writing → formatting
+- **Hierarchical:** Master pipeline orchestrates analysis → planning → writing → formatting
 - **LLM-Powered:** All agents use Gemini 2.5 Flash Lite for reasoning and content generation
 
 ### ✅ **2. Tools**
@@ -193,23 +167,22 @@ from web_demo.agent import root_agent
 load_dotenv()
 
 # Initialize runner with the blog writing pipeline
-# The pipeline orchestrates: research → analysis → planning → parallel writing → formatting
+# The pipeline orchestrates: analysis → planning → parallel writing → formatting
 runner = InMemoryRunner(agent=root_agent, app_name="blog_writing_agent")
 
 # Run the complete blog writing pipeline
 async def write_blog(topic: str):
     """
     Executes the complete blog writing pipeline:
-    1. DataHunter Agent: Plans research and collects data
-    2. GapAnalyzer Agent: Analyzes SERP and identifies gaps
-    3. Article Planner Agent: Creates structured article plan
-    4. Parallel Writer Agents: All 5 writer agents execute concurrently
+    1. GapAnalyzer Agent: Analyzes SERP and identifies gaps
+    2. Article Planner Agent: Creates structured article plan
+    3. Parallel Writer Agents: All 5 writer agents execute concurrently
        - Introduction Writer
        - Evidence Writer
        - Conceptual Writer
        - Technical Writer
        - Conclusion Writer
-    5. Final Formatter Agent: Combines all sections into final article
+    4. Final Formatter Agent: Combines all sections into final article
     """
     response = await runner.run_debug(topic)
     print(response)
@@ -227,12 +200,11 @@ The `root_agent` from `web_demo/agent.py` orchestrates the complete workflow:
 
 ```python
 # Sequential stages (executed one after another):
-# 1. data_hunter_agent → Research planning and data collection
-# 2. gap_analyzer_agent → SERP analysis and gap identification  
-# 3. article_planner_agent → Create structured article plan
+# 1. gap_analyzer_agent → SERP analysis and gap identification  
+# 2. article_planner_agent → Create structured article plan
 
 # Parallel stage (executed concurrently):
-# 4. parallel_writer_agents → All 5 writer agents run simultaneously:
+# 3. parallel_writer_agents → All 5 writer agents run simultaneously:
 #    - introduction_writer_agent
 #    - evidence_writer_agent
 #    - conceptual_writer_agent
@@ -240,7 +212,7 @@ The `root_agent` from `web_demo/agent.py` orchestrates the complete workflow:
 #    - technical_writer_agent
 
 # Final sequential stage:
-# 5. final_formatter_agent → Combine all sections into publication-ready article
+# 4. final_formatter_agent → Combine all sections into publication-ready article
 ```
 
 **Key Benefits of Parallel Execution:**
@@ -250,8 +222,6 @@ The `root_agent` from `web_demo/agent.py` orchestrates the complete workflow:
 
 ### **Output Files**
 After running the pipeline, check `data/collections/` for:
-- `research_plan.json` - Research query plan
-- `data_analysis.md` - Research findings and themes
 - `query_interpretation.json` - SERP search queries
 - `gap_analysis.md` - Content gaps and opportunities
 - `article_plan.json` - Complete article structure
@@ -278,10 +248,6 @@ blogresearch-ai/
 │   ├── conclusion_writer_agent.py
 │   ├── final_formatter_agent.py
 │   └── plan_filters.py
-├── data_hunter_agent/
-│   ├── __init__.py
-│   ├── agent.py                    # Root DataHunter agent
-│   └── query_planner_agent.py      # Query planning sub-agent
 ├── gap_analyzer_agent/
 │   ├── __init__.py
 │   ├── agent.py                    # Root GapAnalyzer agent
