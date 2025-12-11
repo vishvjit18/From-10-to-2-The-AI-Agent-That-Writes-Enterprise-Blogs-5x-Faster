@@ -4,3 +4,4 @@ changelog.md
 __pycache__/
 remember.md
 config.yaml
+scripts/gcp_setup_and_deploy.ps1
