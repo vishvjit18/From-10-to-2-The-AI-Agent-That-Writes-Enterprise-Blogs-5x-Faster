@@ -3,4 +3,4 @@ docs/
 changelog.md
 __pycache__/
 remember.md
-.cursor/
+config.yaml
